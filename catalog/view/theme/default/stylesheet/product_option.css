@@ -1,0 +1,185 @@
+.product-option-radio {
+    position: relative;
+    float: left;
+    min-height: 30px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.product-option-radio :hover {
+    cursor: pointer;
+}
+
+.tick_icon {
+    position: absolute;
+    bottom: -2px;
+    right: -9px;
+    display: none;
+}
+
+.tick_icon.active {
+    display: block;
+}
+
+.arrow-down {
+    position: relative;
+}
+
+.arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #2962ff;
+    transform: rotate(-45deg);
+}
+
+.product-option-radio label {
+    position: relative;
+    margin: 0;
+}
+
+.product-option-radio label:before,
+.product-option-radio label:after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 2px;
+    background: #ffffff;
+    bottom: 3px;
+    z-index: 9;
+}
+
+.product-option-radio label:before {
+    right: 6px;
+    transform: rotate(45deg);
+}
+
+.product-option-radio label:after {
+    width: 10px;
+    bottom: 5px;
+    right: 0;
+    transform: rotate(130deg);
+}
+
+.product-variation__tick {
+    width: .9375rem;
+    height: .9375rem;
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    bottom: 0;
+}
+
+.product-variation__tick:before {
+    border: .9375rem solid transparent;
+    border-bottom: .9375rem solid #2962ff;
+    content: "";
+    position: absolute;
+    right: -.9375rem;
+    bottom: 0;
+}
+
+.product-variation__tick>.icon-tick-bold {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    font-size: 8px;
+}
+
+.product-option {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.product-option-name {
+    line-height: 1.425 !important;
+}
+
+.product-option-name label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.product-option-radio label {
+    height: auto;
+    margin: 0px !important;
+}
+
+.product-option-radio label>input[type="radio"]+* {
+    border: 1px solid #e5e5e5;
+    height: auto;
+}
+
+/* pretty radio */
+
+.product-option-radio label>input[type="radio"] {
+    display: none;
+}
+
+.product-option-radio label>input[type="radio"]:checked+* {
+    color: #2962ff;
+    font-weight: bold;
+    border: 1px solid #2962ff;
+}
+
+.product-option-radio label span {
+    padding: 5px 15px;
+    margin-right: 0;
+    border: 1px solid;
+    display: block;
+}
+
+.product-option-radio label>input[type="radio"]:checked+*::before {
+    background: radial-gradient(teal 0%, teal 40%, transparent 50%, transparent);
+    border-color: teal;
+}
+
+/* css list product option */
+
+.list-product__option--radio {
+    position: relative;
+    float: left;
+    min-height: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.list-product__option--radio label span {
+    padding: 5px 10px !important;
+    margin-right: 0;
+    border: 1px solid;
+    display: block;
+}
+
+.product-option-list {
+    overflow: hidden;
+    display: none;
+}
+
+/* end */
+
+/* demo product list option theme lotus */
+
+.item-area {
+    height: 511px;
+}
+
+.zw-wrapper-options {
+    position: relative;
+    z-index: 999;
+    background: #fff;
+}
+
+.zw-wrapper-options .product-option-list {
+    margin-top: 5px;
+}
+
+.add-to-box>.text-danger {
+    margin-bottom: 5px;
+}
+
+/* end demo theme lotus */

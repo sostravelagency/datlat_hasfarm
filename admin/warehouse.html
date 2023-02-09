@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.js" integrity="sha512-NXopZjApK1IRgeFWl6aECo0idl7A+EEejb8ur0O3nAVt15njX9Gvvk+ArwgHfbdvJTCCGC5wXmsOUXX+ZZzDQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $( function() {
+          $( "#datepicker" ).datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+          
+        } );
+        $( function() {
+          $( "#datepicker2" ).datepicker({
+            dateFormat: "dd-mm-yy"
+          });
+          
+        } );
+    </script>
+    <title>Admin</title>
+</head>
+<body>
+    <div id="original-content" class="admin-container">
+        <div class="admin-header">
+            <div class="admin-logo">
+                <a href="http://127.0.0.1:5500">
+                    <img class="admin-img-logo" src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="">
+                </a>
+            </div>
+            <div class="admin-search" style="opacity: 0;">
+                <input placeholder="Tìm kiếm" class="empoyee-search-input" type="text">
+            </div>
+            <div class="admin-profile">
+                <div id="username">Admin</div>
+                <div onclick="logout()" id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <div class="main-admin">
+            <div class="main-navigation">
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/dashboard.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/1828/1828762.png" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/order.html">
+                        <img class="item-navigation-img" src="https://toppng.com/uploads/preview/menu-bar-order-my-order-icon-11563381244rqqi52g1re.png" alt="">
+                        <span>Đơn hàng</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/product.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+                        <span>Sản phẩm</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/stats.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/116/116385.png" alt="">
+                        <span>Thống kê</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/manage-employee.html">
+                        <img class="item-navigation-img" src="https://res.cloudinary.com/cockbook/image/upload/v1672475575/single/img_184513_cokdap.png" alt="">
+                        <span>Quản lý</span>
+                    </a>
+                </div>
+                <div class="item-navigation item-navigation-active">
+                    <a href="http://127.0.0.1:5500/admin/warehouse.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/151/151901.png" alt="">
+                        <span>Kho</span>
+                    </a>
+                </div>
+            </div>
+            <div class="main-empliyee-content">
+                <div style="font-size: 20px; font-weight: 600">
+                    Danh sách nhập xuất từ ngày: <input style="color: #000;" type="text" id="datepicker" />
+                </div>
+                <div style="font-size: 20px; font-weight: 600">
+                    Đến ngày: <input style="color: #000;" type="text" id="datepicker2" />
+                </div>
+                <br>
+                <style>
+                    .btn-xa {
+                        width: 160px;
+                        padding: 10px;
+                        border-radius: 80px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 40px;
+                        background-color: #2e89ff;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                </style>
+                <div onclick="checkValueInput()" class="btn-xa">
+                    Lọc
+                </div>
+                <br>
+                <div>
+                    Lọc 
+                    <select id="filter-x" style="color: #000;">
+                        <option style="color: #000;" value="1">Sản phẩm nhập</option>
+                        <option style="color: #000;" value="0">Sản phẩm xuất</option>
+                    </select>
+                </div>
+                <br>
+                <div style="width: 100%" id="a-a">
+                    <style>
+                        html {
+                            background-color: #1d1e22;
+                        }
+                        * {
+                            color: #ffffff80;
+                            box-sizing: border-box;
+                            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                
+                        }
+                        .item-navigation-active {
+                            background: #323a46;
+                        }
+                        .admin-profile {
+                            display: flex;
+                            justify-self: center;
+                            align-items: center;
+                            gap: 16px;
+                        }
+                        #logout {
+                            cursor: pointer;
+                        }
+                        #ui-datepicker-div * {
+                            color: #000 !important; 
+                        }
+                        .tr-a {
+                            font-weight: 600;
+                            font-size: 18px;
+                
+                        }
+                        .tr-a td {
+                            text-align: center;
+                            padding: 10px;
+                        }
+                        table {
+                            width: 100%;
+                        }
+                        thead, tbody {
+                            width: 100%;
+                        }
+                        .item-list-r td {
+                            padding: 10px;
+                        }
+                        * {
+                            border-collapse: collapse;
+                        }
+                        td {
+                            border: 1px solid #000;
+                            border-collapse: collapse;
+                        }
+                    </style>
+                    <style>
+                        .header-1 {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 10px;
+                
+                        }
+                        .image-1 {
+                            width: 200px;
+                            height: 100px;
+                        }
+                
+                    </style>
+                    <table>
+                        <thead>
+                            <tr class="tr-a">
+                                <td style="text-align: left;">STT</td>
+                                <td style="text-align: left;">Tên mặt hàng</td>
+                                <td style="text-align: left;">Số lượng</td>
+                                <td style="text-align: left;">Đơn giá</td>
+                                <td style="text-align: left;">Thành tiền</td>
+                                <td style="text-align: left;">Trạng thái</td>
+                            </tr>
+                        </thead>
+                        <tbody id="list-product">
+                            <tr>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div>
+                    <div onclick="printReport()" id="export-report" style="padding: 10px 20px; border-radius: 80px; background: #2e89ff; cursor: pointer; color: #fff; width: max-content;" class="c-flex-center">Xuất hóa đơn</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let arr_warehouse= []
+        let final_result= []
+        let total= 0
+        async function getWareHouse() {
+            const res= await axios({
+                url: "http://localhost:8000/admin/warehouse/specific",
+                method: "get"
+            })
+            const result= await res.data
+            arr_warehouse= result
+            // arr_warehouse = result.reduce((cur, val) => {
+            // let alreadyIn = cur.find(e => e['id'] == val['id'] && e['state'] == val['state']);
+            // if (alreadyIn) {
+            //     alreadyIn['amount'] = (parseInt(alreadyIn['amount']) + parseInt(val['amount'])).toString();
+            //     alreadyIn['image1'] = alreadyIn['image1']
+            //     alreadyIn['product_name'] = alreadyIn['product_name']
+            //     alreadyIn['product_description'] = alreadyIn['product_description']
+            //     alreadyIn['price'] = alreadyIn['price']
+            //     alreadyIn['time_created'] = alreadyIn['time_created']
+            //     alreadyIn['state'] = alreadyIn['state']
+    
+            // } else {
+            //     cur.push(val);
+            // }
+            // return cur;
+            // }, []);
+            console.log(arr_warehouse)
+        }
+        getWareHouse()
+    </script>
+    <script>
+        let state= parseInt($("#filter-x").val())
+        document.getElementById("filter-x").onchange= function() {
+            if(parseInt(this.value)== 0) {
+                state= 1 
+                total= numberWithCommas(_.sumBy(final_result?.filter(item=> parseInt(item.state)=== 1), function(e) {return parseInt(e.price) * parseInt(e.amount)}))
+                document.getElementById("list-product").innerHTML= final_result?.filter(item=> parseInt(item.state)=== 1).map((item, key)=> `
+                    <tr class="item-list-r">
+                        <td>${parseInt(key) + parseInt(1)}</td> 
+                        <td>${item.product_name}</td>    
+                        <td>${item.amount}</td>    
+                        <td>${numberWithCommas(parseInt((item?.import_price)))}đ</td>    
+                        <td>${numberWithCommas(parseInt(item?.import_price) * parseInt(item.amount))}đ</td>    
+                        <td>${parseInt(item.state)=== 1 ? "Nhập" : "Xuất"}</td>    
+                    </tr>
+                `).join("")
+            }
+            else {
+                state= 0
+                // console.log(123456)
+                // document.getElementById("list-product").innerHTML= arr_warehouse?.filter(item=> moment(item.time_created).format("DD-MM-YYYY") === document.getElementById("datepicker").value && parseInt(item.state)=== 0)
+                // console.log(final_result)
+                total= numberWithCommas(_.sumBy(final_result?.filter(item=> parseInt(item.state)=== 0), function(e) {return parseInt(e.price) * parseInt(e.amount)}))
+
+                document.getElementById("list-product").innerHTML= final_result?.filter(item=> parseInt(item.state)=== 0)?.map((item, key)=> `
+                    <tr class="item-list-r">
+                        <td>${parseInt(key) + parseInt(1)}</td> 
+                        <td>${item.product_name}</td>    
+                        <td>${item.amount}</td>    
+                        <td>${numberWithCommas(parseInt((item?.import_price)))}đ</td>    
+                        <td>${numberWithCommas(parseInt(item?.import_price) * parseInt(item.amount))}đ</td>    
+                        <td>${parseInt(item.state)=== 1 ? "Nhập" : "Xuất"}</td>    
+                    </tr>
+                `).join("")
+            }
+        }
+    </script>
+    <script>
+        function checkValueInput() {
+            if(parseInt($("#filter-x").val())=== 0) {
+                state = 0
+            }
+            else {
+                state= 1
+            }
+            if(arr_warehouse?.filter(item=> moment(moment(item.time_created).format("DD-MM-YYYY"), "DD-MM-YYYY").valueOf() >= moment(document.getElementById("datepicker").value, "DD-MM-YYYY").valueOf() && moment(moment(item.time_created).format("DD-MM-YYYY"), "DD-MM-YYYY").valueOf() <= moment(document.getElementById("datepicker2").value, "DD-MM-YYYY").valueOf())?.length > 0) {
+                final_result= arr_warehouse?.filter(item=> moment(moment(item.time_created).format("DD-MM-YYYY"), "DD-MM-YYYY").valueOf() >= moment(document.getElementById("datepicker").value, "DD-MM-YYYY").valueOf() && moment(moment(item.time_created).format("DD-MM-YYYY"), "DD-MM-YYYY").valueOf() <= moment(document.getElementById("datepicker2").value, "DD-MM-YYYY").valueOf())
+                total= numberWithCommas(_.sumBy(final_result, function(e) {return parseInt(e.price) * parseInt(e.amount)}))
+                document.getElementById("list-product").innerHTML= final_result?.filter(item=> parseInt(item.state)== parseInt($("#filter-x").val()))?.map((item, key)=> `
+                    <tr class="item-list-r">
+                        <td>${parseInt(key) + parseInt(1)}</td> 
+                        <td>${item.product_name}</td>    
+                        <td>${item.amount}</td>    
+                        <td>${numberWithCommas(parseInt((item?.import_price) ))}đ</td>    
+                        <td>${numberWithCommas(parseInt(item?.import_price) * parseInt(item.amount))}đ</td>    
+                        <td>${parseInt(item.state)=== 1 ? "Nhập" : "Xuất"}</td>    
+                    </tr>
+                `).join("")
+            }
+            else {
+                document.getElementById("list-product").innerHTML= `<tr>
+                        <td></td>
+                        <td></td>
+                        <td rowspan="3" style="text-align: center; padding: 10px">Không có dữ liệu</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>`
+            }
+        }
+    </script>
+    <script>
+        function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    </script>
+    <script>
+        function printReport() {
+            function nameState() {
+                if(state== -1) {
+                    return `Phiếu nhập xuất hàng hóa`
+                }
+                if(state== 1) {
+                    return `Phiếu nhập hàng`
+                }
+                if(state== 0) {
+                    return `Phiếu xuất hàng`
+                }
+            }
+            function pState() {
+                if(state== -1) {
+                    return `Người nhập xuất hàng hóa`
+                }
+                if(state== 1) {
+                    return `Người nhập hàng`
+                }
+                if(state== 0) {
+                    return `Người xuất hàng`
+                }
+            }
+            const addContent1= `<div class="header-1">
+            <img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" class="image-1" alt="">
+            <div>
+                <strong>
+                    Mẫu số 02-VT
+                </strong>
+                <div style="margin-top: 10px">(Ban hành theo QĐ số 48-2006-BTC)</div>
+            </div>
+        </div>
+        `
+        +
+        `
+        <div style="text-align: center;font-size: 20px; font-weight: 600; margin-top: 12px;">
+            ${nameState()}
+        </div>
+        `
+        +
+        `
+        <div style="text-align: center; margin-top: 20px;">
+            Ngày ${($("#datepicker").val())} -> ${($("#datepicker2").val())}
+        </div>
+        <div style="margin-top: 12px; margin-bottom: 12px">
+            <div>Họ tên người nhận: DaLlat HasFarm</div>
+            <div>Số điện thoại: 0123456789</div>
+            <div>Địa chỉ: sô 388 âu lạc, phú nhuận, hcm</div>
+        </div>`
+            const addContent2= `<div style="margin-top: 12px;">Thành tiền : ${total}đ</div>
+        <div style="width: 100%; display: flex; flex-direction: row-reverse;">
+            <div>
+                <div style="text-align: center; margin-bottom: 8px;">Ngày ${moment(new Date()).format("DD")} tháng  ${moment(new Date()).format("MM")} năm  ${moment(new Date()).format("YYYY")}</div>
+                <div style="text-transform: uppercase; text-align: center; margin-bottom: 8px;">${pState()}</div>
+                <div style="text-align: center">DaLat HasFarm</div>
+            </div>
+        </div>`
+        const addContent3= `<style>
+                * {
+                    color: #000 !important;
+                }
+            </style>`
+            const printContent=addContent3+ addContent1+ document.getElementById("a-a").innerHTML + addContent2
+            const originContent= document.body.innerHTML
+            document.body.innerHTML= printContent
+            wait(500)
+            window.print()
+            document.body.innerHTML= originContent
+            window.location.reload()
+        }
+        function wait(ms) {
+        return new Promise(resolve=> setTimeout(resolve, ms))
+    }
+    </script>
+    <script>
+        async function checkInfo() {
+    
+            if(Cookies.get("uid")) {
+                const res= await axios({
+                    url: "http://localhost:8000/admin",
+                    method: "get",
+                    params: {
+                        id: Cookies.get("uid")
+                    }
+                })
+                const result= await res.data
+                if(result?.[0]?.id) {
+                    $("#username").html(result?.[0]?.adminName)
+                }
+                else {
+                    window.location.href= window.location.origin+ "/admin/login.html"
+                }
+            
+            }
+            else {
+                window.location.href= window.location.origin+ "/admin/login.html"
+            }
+        }
+        checkInfo()
+    </script>
+    <script>
+        const logout= ()=> {
+            Cookies.remove("uid")
+            return window.location.href= window.location.origin+ "/employee/login.html"
+        };
+    </script>
+</body>
+</html>

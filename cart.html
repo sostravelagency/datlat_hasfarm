@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>Giỏ hàng</title>
+    <base href="https://lavieestbelle.vn/" />
+    <meta name="description" content="Giỏ hàng" />
+    <meta name="robots" content="index, follow, noodp, noydir" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+      .owl-carousel .owl-stage-outer {
+        height: unset !important;
+      }
+    </style>
+    <script
+      src="catalog/view/theme/default/javascript/jquery.lazy.min.js"
+      defer
+    ></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        $(".lazy").Lazy({
+          scrollDirection: "vertical",
+          effect: "fadeIn",
+          effectTime: 1500,
+          visibleOnly: true,
+          threshold: 0,
+        });
+      });
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/base.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/module.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/responsive.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/iwish.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/bpr-products-module.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/bpr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/stylesheet.css"
+    />
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/jquery-3.3.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/jquery.gmap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/option-selectors.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/api.jquery.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/owl.carousel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/cs.script.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/appear.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/jquery.elevatezoom.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/common.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/custom.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="/catalog/view/theme/default/stylesheet/product_option.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link
+      href="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png"
+      rel="icon"
+    />
+    <script
+      src="/catalog/view/theme/default/javascript/product_option.js"
+      type="text/javascript"
+    ></script>
+    <link
+      href="catalog/view/theme/vision/stylesheet_custom/stylesheet.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+
+  <body class="checkout-cart">
+    <div class="hidden-md hidden-lg opacity_menu"></div>
+    <div class="opacity_filter"></div>
+    <div id="mySidenav" class="sidenav menu_mobile hidden-md hidden-lg">
+      <div class="top_menu_mobile">
+        <span class="close_menu"
+          ><img
+            src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png"
+            alt="Dalat Hasfarm Flower Boutique"
+        /></span>
+      </div>
+      <div class="content_memu_mb">
+        <div class="link_list_mobile">
+          <ul class="ct-mobile hidden"></ul>
+          <ul class="ct-mobile">
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/">Trang chủ</a>
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a>
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/san-pham.html">Sản phẩm</a>
+              <i class="ti-plus hide_close"></i>
+              
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/chuyen-cua-la.html">Nghe Hoa Kể</a>
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End -->
+    <header class="header">
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <ul class="list-inline topbar_left hidden-sm hidden-xs">
+                <li>
+                  <a class="welcome_text" href="javascript:void(0)"></a>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="col-md-6 col-sm-6 d-list col-xs-12 a-right topbar_right"
+            >
+              <div class="list-inline a-center f-right">
+                <ul>
+                  <li class="topbar_currency">
+                    <span id="form-currency">
+                      <a href="javascript:void(0)" class="current_currency">
+                        VND <strong>đ</strong>
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                      <ul class="currencies_list">
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="EUR"
+                          >
+                            Euro €
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="GBP"
+                          >
+                            £ Pound Sterling
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="USD"
+                          >
+                            $ US Dollar
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="VND"
+                          >
+                            VND đ
+                          </a>
+                        </li>
+                      </ul>
+                      <div class="pull-left hidden">
+                        <form
+                          action="https://lavieestbelle.vn/common/currency/currency"
+                          method="post"
+                          enctype="multipart/form-data"
+                        >
+                          <input type="hidden" name="code" value="" />
+                         
+                        </form>
+                      </div>
+                    </span>
+                  </li>
+                  <li>
+                    <a href="http://127.0.0.1:5500/login.html">Đăng nhập</a>
+                  </li>
+                  <li>
+                    <a href="http://127.0.0.1:5500/register.html">Đăng ký</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mid-header">
+        <div class="content_header">
+          <div class="header-main">
+            <div class="container">
+              <div class="menu-bar-h nav-mobile-button hidden-md hidden-lg">
+                <a href="#nav-mobile">
+                  <!-- <img src='catalog/view/theme/vision/image/i_menubar.png' alt='menu bar' /> -->
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-3 text-right">
+                  <div class="logo">
+                    <a href="http://127.0.0.1:5500/" class="logo-wrapper">
+                      <img
+                        src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png"
+                        alt="Dalat Hasfarm Flower Boutique"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                  <div class="row">
+                    <div class="col-lg-9 col-md-9">
+                      <div id="search" class="">
+                        <span class="fa fa-search"></span>
+                        <div
+                          class="input-group search-bar"
+                          role="search"
+                          style="
+                            background-image: url('image/catalog/services/search_box_bg.png');
+                          "
+                        >
+                          <div class="collection-selector">
+                            <select name="category_id" class="search_text">
+                              <option class="item-cate search_item" value="0">
+                                Tất cả
+                              </option>
+                              <option class="item-cate search_item" value="197">
+                                Thông Tươi Noel
+                              </option>
+                              <option class="item-cate search_item" value="182">
+                                Hoa Bó
+                              </option>
+                              <option class="item-cate search_item" value="187">
+                                Bình Hoa
+                              </option>
+                              <option class="item-cate search_item" value="186">
+                                Giỏ Hoa
+                              </option>
+                              <option class="item-cate search_item" value="193">
+                                Hoa Cưới
+                              </option>
+                              <option class="item-cate search_item" value="189">
+                                Kệ Hoa
+                              </option>
+                              <option class="item-cate search_item" value="195">
+                                &nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chia Buồn
+                              </option>
+                              <option class="item-cate search_item" value="196">
+                                &nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chúc Mừng
+                              </option>
+                              <option class="item-cate search_item" value="194">
+                                Lan Hồ Điệp
+                              </option>
+                              <option class="item-cate search_item" value="192">
+                                Hoa Tulip
+                              </option>
+                              <option class="item-cate search_item" value="191">
+                                Hộp Hoa
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-search">
+                            <input
+                              type="search"
+                              name="search"
+                              value=""
+                              placeholder="Tìm kiếm"
+                              class="input-group-field st-default-search-input search-text"
+                              autocomplete="off"
+                            />
+                            <span class="input-group-btn"
+                              ><button class="btn icon-fallback-text">
+                                <i class="fa fa-search"></i></button
+                            ></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+                      <div class="header-right">
+                        <div class="header-acount hidden-lg-down">
+                          <div id="cart" class="lazi">
+                            <div
+                              class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg"
+                            >
+                              <div class="mini-cart text-xs-center">
+                                <div class="heading-cart">
+                                  <a
+                                    class="bg_cart"
+                                    href="http://127.0.0.1:5500/cart.html"
+                                    title="Giỏ hàng"
+                                  >
+                                    <img
+                                      alt="Giỏ hàng"
+                                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                                      data-src="https://res.cloudinary.com/anlqn/image/upload/v1605159235/ex/iufzxvou6n46tcqz83dd.png"
+                                      class="lazy"
+                                    />
+                                    <span
+                                      class="count_item count_item_pr cart-total"
+                                      >0</span
+                                    >
+                                  </a>
+                                </div>
+                                <div class="top-cart-content">
+                                  <ul
+                                    id="cart-sidebar"
+                                    class="mini-products-list count_li"
+                                  >
+                                    <div class="no-item">
+                                      <p>Giỏ hàng của bạn trống!</p>
+                                    </div>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="dfhdhjsdhjkdass top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm"
+                            > 
+                              
+                              <div class="mini-cart text-xs-center">
+                                <div class="heading-cart-mobi">
+                                  <a
+                                    class="bg_cart"
+                                    href="http://127.0.0.1:5500/cart.html"
+                                    title="Giỏ hàng"
+                                  >
+                                    <img
+                                      alt="Giỏ hàng"
+                                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                                      data-src="catalog/view/theme/vision/image/icon_cart_mobi.png"
+                                      class="lazy"
+                                    />
+                                    <span
+                                      class="count_item count_item_pr cart-total"
+                                      >0</span
+                                    >
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <nav class="header-nav hidden-sm hidden-xs">
+                        <ul class="item_big pt_custommenu" id="pt_custommenu">
+                          <li id="name-user-x" class="nav-item pt_menu">
+                            <a class="a-img" href="http://127.0.0.1:5500/login.html">
+                              <span>Đăng nhập</span>
+                            </a>
+                          </li>
+                          <li id="logout-user-x" class="nav-item pt_menu">
+                            <a class="a-img" href="http://127.0.0.1:5500/register.html">
+                              <span>Đăng ký</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a class="a-img" href="http://127.0.0.1:5500/">
+                              <span>Trang chủ</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/gioi-thieu.html"
+                            >
+                              <span>Giới thiệu</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/san-pham.html"
+                            >
+                              <span>Sản phẩm</span>
+                            </a>
+                           
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/chuyen-cua-la.html"
+                            >
+                              <span>Nghe Hoa Kể</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/lien-he.html"
+                            >
+                              <span>Liên hệ</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                      <script type="text/javascript">
+                        var CUSTOMMENU_POPUP_EFFECT = 0;
+                        var CUSTOMMENU_POPUP_TOP_OFFSET = 50;
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="layoutPage-cart" id="layout-cart">
+      <section class="breadcrumb-shop">
+        <div class="container">
+          <ul
+            class="breadcrumb-arrows"
+            itemscope
+            itemtype="https://schema.org/BreadcrumbList"
+          >
+            <li
+              itemprop="itemListElement"
+              itemscope
+              itemtype="https://schema.org/ListItem"
+              class="home"
+            >
+              <a itemprop="item" href="http://127.0.0.1:5500/">
+                <span itemprop="name"
+                  ><i class="fa fa-home"></i> Trang chủ</span
+                >
+              </a>
+              <span><i class="fa fa-angle-right"></i></span>
+              <meta itemprop="position" content="0" />
+            </li>
+            <li
+              itemprop="itemListElement"
+              itemscope
+              itemtype="https://schema.org/ListItem"
+            >
+              <span itemprop="name">Giỏ hàng</span>
+              <meta itemprop="position" content="1" />
+            </li>
+          </ul>
+        </div>
+      </section>
+      <link
+        rel="stylesheet"
+        href="catalog/view/theme/default/stylesheet/checkout/cart.css"
+      />
+      <div class="hidden"></div>
+      <div class="wrapper-cart-detail">
+        <div class="container">
+          <div class="heading-page">
+            <div class="header-page">
+              <h1>Giỏ hàng của bạn</h1>
+              <p class="count-cart">
+                Có <span> <span id="count-cart">0</span> sản phẩm </span> trong
+                giỏ hàng
+              </p>
+            </div>
+          </div>
+          <div class="row wrapbox-content-cart">
+            <div class="col-md-8 col-sm-8 col-xs-12 contentCart-detail">
+              <div class="cart-container">
+                <form
+                  action="http://127.0.0.1:5500/checkout/cart/edit"
+                  method="post"
+                  enctype="multipart/form-data"
+                  id="cartformpage"
+                >
+                  <table class="table-cart">
+                    <thead>
+                      <tr>
+                        <th class="image">&nbsp;</th>
+                        <th class="item">Tên sản phẩm</th>
+                        <th class="remove">&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody id="list-cart">
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12 sidebarCart-sticky">
+              <div class="sidebox-order">
+                <div class="sidebox-order-inner">
+                  <div class="sidebox-order_title">
+                    <h3>Thông tin đơn hàng</h3>
+                  </div>
+                  <div class="sidebox-order_total">
+                    <p>
+                      Tổng tiền:
+                      <span id="total-price" class="total-price">0đ</span>
+                    </p>
+                  </div>
+                  <div class="sidebox-order_text">
+                    <p>
+                      Phí vận chuyển sẽ được tính ở trang thanh toán.<br />Bạn
+                      cũng có thể nhập mã giảm giá ở trang thanh toán.
+                    </p>
+                  </div>
+                  <div class="sidebox-order_action">
+                    <a
+                      href="http://127.0.0.1:5500/checkout.html"
+                      class="button dark btncart-checkout"
+                      >Thanh toán</a
+                    >
+                    <p class="link-continue text-center">
+                      <a href="http://127.0.0.1:5500/">
+                        <i class="fa fa-reply"></i> Tiếp tục mua hàng
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container hidden">
+        <div class="row">
+          <div id="content" class="col-sm-12"></div>
+        </div>
+        <div class="content_mainbottom">
+          <div class="container">
+            <div class="row"></div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          $(document).ready(function () {
+            var html =
+              '<a href="javascript:void(0)"' +
+              ' target="_self" class="">' +
+              '   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="https://lavieestbelle.vn/image/cache/catalog/services/payment-187x77.png" class="lazy"  alt="" />' +
+              "</a>";
+
+            $(".footer .site-footer .widget-ft .payment").append(html);
+          });
+        </script>
+      </div>
+    </div>
+    <script src="catalog/view/theme/default/javascript/checkout/cart.js"></script>
+    <div class=""></div>
+    <footer id="footer">
+      <div class="footer-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+              <div class="footer-column-last pull-left">
+                <div class="info_footer">
+                  <div
+                    class="item"
+                    style="
+                      color: #474c5f;
+                      font-family: Roboto, HelveticaNeue, 'Helvetica Neue',
+                        sans-serif;
+                      font-size: 14px;
+                    "
+                  >
+                    <h4
+                      class="title-menu4 icon_none_first"
+                      style="
+                        font-family: Roboto, HelveticaNeue, 'Helvetica Neue',
+                          sans-serif;
+                        line-height: normal;
+                        color: #ffffff;
+                        margin: 10px 0px;
+                        font-size: 1.28571em;
+                        letter-spacing: 0.5px;
+                        position: relative;
+                      "
+                    >
+                      DatLat HasFarm
+                    </h4>
+                    <ul
+                      class="contact contact_x"
+                      style="
+                        margin-right: 0px;
+                        margin-bottom: 0px;
+                        margin-left: 0px;
+                        padding: 0px;
+                        list-style: none outside;
+                      "
+                    >
+                      <li
+                        style="
+                          font-family: Arial, sans-serif;
+                          position: relative;
+                          color: #acacac;
+                          margin-bottom: 20px;
+                          line-height: 25px;
+                        "
+                      >
+                        <span class="txt_content_child" style="display: inherit"
+                          >Địa chỉ: &nbsp;91/1 Nguyễn Hữu Cảnh, Phường 22, Quận
+                          B&igrave;nh Thạnh, TPHCM</span
+                        >Hotline:
+                        <a
+                          class="text-is-phone-number"
+                          href="tel:0919%2089%2079%2069"
+                          >0919 89 79 69</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="item"
+                    style="
+                      color: #474c5f;
+                      font-family: Roboto, HelveticaNeue, 'Helvetica Neue',
+                        sans-serif;
+                      font-size: 14px;
+                    "
+                  >
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <div class="fix-mobile5">
+                <div class="footer-column pull-left">
+                  <h4>Chính sách</h4>
+                  <ul class="links">
+                    <li>
+                      <a href="javascript:;"
+                        >Chính sách vận chuyển</a
+                      >
+                    </li>
+                    <li>
+                      <a href="javascript:;"
+                        >Chính sách bảo mật</a
+                      >
+                    </li>
+                    <li>
+                      <a href="javascript:;"
+                        >Quy định &amp; Chính sách</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <div class="fix-mobile5">
+                <div class="footer-column pull-left">
+                  <h4>Hỗ trợ</h4>
+                  <ul class="links">
+                    <li><a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a></li>
+                    <li>
+                      <a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+              <div class="fix-mobile5">
+                <div class="footer-column">
+                  <h4>FACEBOOK</h4>
+                  <div
+                    class="fb-page"
+                    data-href="https://www.facebook.com/tiemhoa.lavieestbelle"
+                    data-small-header="false"
+                    data-adapt-container-width="true"
+                    data-hide-cover="false"
+                    data-show-facepile="true"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+              <div class="footer-column thongketruycap"></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="row">
+              <div class="coppyright">
+                <span id="copyright"
+                  >&copy; Copyright 2020-2022 Dalat HasFarm.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      :root {
+        --bg_callnow_color: #5d3d2e;
+        --bg_callnow_color_icon: #5d3d2e;
+      }
+    </style>
+
+    <button
+      id="btn_show_cart"
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target=".bs-popupcart-modal-lg"
+      style="display: none"
+    ></button>
+
+    <div
+      class="modal fade bs-popupcart-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i> Giỏ hàng
+            </h4>
+          </div>
+          <div class="modal-body" id="load_info_cart"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Tiếp tục mua hàng
+            </button>
+            <a href="checkout.html" class="btn btn-primary">Thanh toán</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    async function get_cart() {
+      if (Cookies.get("uid")) {
+        const res = await axios({
+          url: "http://localhost:8000/get_cart",
+          method: "post",
+          data: {
+            id_user: Cookies.get("uid"),
+          },
+        });
+        const result = await res.data;
+        if(result?.length <= 0 ) {
+            document.getElementById("list-cart").innerHTML= `<div class="no-item">
+            <p>Giỏ hàng của bạn trống</p>
+        </div>`
+        }
+        else {
+
+            document.getElementById("list-cart").innerHTML= "<ul class='list-item-cart'>" + result?.map?.(item=> {
+              if(parseInt(item.discount) > 0) {
+                return `
+                <tr class="line-item-container" data-variant-id="10625">
+                  <td class="image">
+                    <div class="product_image">
+                      <a
+                        href="http://127.0.0.1:5500/product.html?productId=${item.id_product}"
+                        title="${item.product_name}"
+                      >
+                        <img
+                          src="${item.image1}"
+                          alt="${item.product_name}"
+                        />
+                      </a>
+                    </div>
+                  </td>
+                  <td class="item">
+                    <h3>
+                      <a
+                        href="http://127.0.0.1:5500/product.html?productId=${item.id_product}"
+                        title="${item.product_name}"
+                        class="text-danger"
+                      >
+                        ${item.product_name} <span class="text-danger">*</span>
+                      </a>
+                    </h3>
+                    <p class="variant"></p>
+                    <p>
+                      <span class="pri line-item-price">${numberWithCommas(parseInt(item.price) * (1 - parseInt(item.discount) / 100))}đ</span>
+                    </p>
+  
+                    <div class="qty quantity-partent qty-click clearfix">
+                      <button onclick="updateAmount(${item.id_product}, ${parseInt(item.price) * (1 - parseInt(item.discount) / 100)}, ${parseInt(-1)}, ${parseInt(item.amount)}, ${parseInt(item.amount_product)})" type="button" class="qtyminus qty-btn">
+                        -
+                      </button>
+                      <input
+                        id="amount-product-${item.id_product}"
+                        type="text"
+                        name="quantity[10625]"
+                        value="${item.amount}"
+                        size="1"
+                        class="tc line-item-qty item-quantity"
+                      />
+                      <button onclick="updateAmount(${item.id_product}, ${parseInt(item.price) * (1 - parseInt(item.discount) / 100)}, ${parseInt(1)}, ${parseInt(item.amount)}, ${parseInt(item.amount_product)})" type="button" class="qtyplus qty-btn">
+                        +
+                      </button>
+                    </div>
+                    <p class="price">
+                      <span class="text">Thành tiền:</span>
+                      <span id="sum-p-${item.id_product}" class="line-item-total">${numberWithCommas(parseInt(item.amount) * parseInt(item.price) * (1 - parseInt(item.discount) / 100))}đ</span>
+                    </p>
+                  </td>
+                  <td title="Xóa" class="remove">
+                    <a
+                      href="javascript:void(0)"
+                      class="cart"
+                      onclick="deleteProduct(${item.id_product})"
+  
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 8L16 16"
+                          stroke="#474747"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M16 8L8 16"
+                          stroke="#474747"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+              </tr>
+  
+              `
+              }
+              else {
+
+                return `
+                <tr class="line-item-container" data-variant-id="10625">
+                  <td class="image">
+                    <div class="product_image">
+                      <a
+                        href="http://127.0.0.1:5500/product.html?productId=${item.id_product}"
+                        title="${item.product_name}"
+                      >
+                        <img
+                          src="${item.image1}"
+                          alt="${item.product_name}"
+                        />
+                      </a>
+                    </div>
+                  </td>
+                  <td class="item">
+                    <h3>
+                      <a
+                        href="http://127.0.0.1:5500/product.html?productId=${item.id_product}"
+                        title="${item.product_name}"
+                        class="text-danger"
+                      >
+                        ${item.product_name} <span class="text-danger">*</span>
+                      </a>
+                    </h3>
+                    <p class="variant"></p>
+                    <p>
+                      <span class="pri line-item-price">${numberWithCommas(parseInt(item.price))}đ</span>
+                    </p>
+  
+                    <div class="qty quantity-partent qty-click clearfix">
+                      <button onclick="updateAmount(${item.id_product}, ${parseInt(item.price)}, ${parseInt(-1)}, ${parseInt(item.amount)}, ${parseInt(item.amount_product)})" type="button" class="qtyminus qty-btn">
+                        -
+                      </button>
+                      <input
+                        id="amount-product-${item.id_product}"
+                        type="text"
+                        name="quantity[10625]"
+                        value="${item.amount}"
+                        size="1"
+                        class="tc line-item-qty item-quantity"
+                      />
+                      <button onclick="updateAmount(${item.id_product}, ${parseInt(item.price)}, ${parseInt(1)}, ${parseInt(item.amount)}, ${parseInt(item.amount_product)}, ${parseInt(item.amount_product)})" type="button" class="qtyplus qty-btn">
+                        +
+                      </button>
+                    </div>
+                    <p class="price">
+                      <span class="text">Thành tiền:</span>
+                      <span id="sum-p-${item.id_product}" class="line-item-total">${numberWithCommas(parseInt(item.amount) * parseInt(item.price))}đ</span>
+                    </p>
+                  </td>
+                  <td title="Xóa" class="remove">
+                    <a
+                      href="javascript:void(0)"
+                      class="cart"
+                      onclick="deleteProduct(${item.id_product})"
+  
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 8L16 16"
+                          stroke="#474747"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M16 8L8 16"
+                          stroke="#474747"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </a>
+                  </td>
+              </tr>
+  
+              `
+              
+              }
+              
+            }
+            ).join("") + "</ul>"
+        }
+        document.getElementById("count-cart").innerHTML= result.length
+        document.getElementById("total-price").innerHTML= numberWithCommas(_.sumBy(result, function(e) {
+          if(parseInt(e.discount) > 0) {
+            return parseInt(e.amount) * parseInt(e.price) * (1 - parseInt(e.discount) / 100)
+          }
+          else {
+            return parseInt(e.amount) * parseInt(e.price)
+          }
+        }))+ "đ"
+      } else {
+        document.getElementById(
+          "list-cart"
+        ).innerHTML = `<div class="no-item">
+                <p>Đăng nhập để tiếp tục</p>
+            </div>`;
+      }
+    }
+    get_cart();
+  </script>
+  <script>
+    async function get_cart() {
+        if(Cookies.get("uid")) {
+            const res= await axios({
+                url: "http://localhost:8000/get_cart",
+                method: "post",
+                data: {
+                    id_user: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.length <= 0 ) {
+                document.getElementById("cart-sidebar").innerHTML= `<div class="no-item">
+                <p>Giỏ hàng của bạn trống</p>
+            </div>`
+            }
+            else {
+                document.getElementById("cart-sidebar").innerHTML= "<ul class='list-item-cart'>" + result?.map?.(item=> `
+                    <li class="item productid-0">
+                        <div class="border_list">
+                            <a class="product-image" href="http://127.0.0.1:5500/product.html?productId=${item.id_product}" title="${item.product_name}">
+                                <img src="${item.image1}" data-src="${item.image1}" class="lazy" width="100">
+                            </a>
+                            <div class="detail-item">
+                                <div class="product-details">
+                                    <p class="product-name">
+                                        <a class="text2line" href="http://127.0.0.1:5500/product.html?productId=${item.id_product}">${item.product_name}</a>
+                                    </p>
+                                </div>
+                                <div class="product-details-bottom">
+                                    <span class="price">${item.price}đ</span>
+                                    <div class="quantity-select qty_drop_cart">x ${item.amount}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    
+                `).join("") + "</ul>"+ 
+                `<div class="pd">
+                        <div class="top-subtotal">Thành tiền: <span id="total-price" class="price total-price">0đ</span></div>
+                        <div class="top-subtotal">Tổng số: <span class="price total-price">0đ</span></div>
+                    </div>
+                    <div class="pd right_ct">
+                        <a href="http://127.0.0.1:5500/cart.html" class="btn btn-primary"><span>Giỏ hàng</span></a>
+                        <a href="http://127.0.0.1:5500/checkout.html" class="btn btn-white"><span>Thanh toán</span></a>
+                    </div>`
+
+                $(".total-price").html(numberWithCommas(_.sumBy(result, function(e){ 
+                  if(parseInt(e.discount) > 0) {
+                    return parseInt(e.amount) * parseInt(e.price) * (1 - parseInt(e.discount) / 100)
+                  }
+                  else {
+                    return parseInt(e.amount) * parseInt(e.price)
+                  }
+                })))
+                $(".count_item").html(_.sumBy(result, function(e){ return parseInt(e.amount)}))
+            }
+        }
+        else {
+            document.getElementById("cart-sidebar").innerHTML= `<div class="no-item">
+                <p>Đăng nhập để tiếp tục</p>
+            </div>`
+        }
+    }
+    // get_cart()
+
+    async function remove_item_cart() {
+
+    }
+</script>
+
+  <script>
+    async function checkLogin() {
+      if(Cookies.get("uid")) {
+        const res= await axios({
+          url: "http://localhost:8000/",
+          method: "post",
+          data: {
+            id_user: Cookies.get("uid")
+          }
+        })
+        const result= await res.data  
+        document.getElementById("name-user-x").innerHTML= result[0].username
+        document.getElementById("logout-user-x").innerHTML= `<div class="jkdjksdjksldsas" onclick="logout()">Đăng xuất</div>`
+        return console.log(result)
+      }
+    }
+    checkLogin()
+    function logout() {
+      Cookies.remove("uid")
+      return window.location.reload()
+    }
+  </script>
+  <script>
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    async function deleteProduct(id) {
+      swal("Thông báo", "Bạn có muốn xóa sản phẩm này khỏi giỏ hàng không ?", {
+        buttons: {
+          cancel: "Hủy",
+          ok: "Xóa"
+        },
+      })
+      .then(async (value) => {
+        switch (value) {
+          case "cancel":
+            break
+          case "ok":
+            const res= await axios({
+              url: "http://localhost:8000/delete_cart/item",
+              method: "post",
+              data: {
+                id_product: id,
+                id_user: Cookies.get("uid")
+              }
+            
+            })
+            const result= await res.data
+            swal("Thông báo", "Xóa sản phẩm khỏi giỏ hàng thành công", "success")
+            .then(()=> window.location.reload())
+            break;
+          
+          default:
+            break
+        }
+      });
+      // const res= await axios({
+      //   url: "http://localhost:8000/delete_cart/item",
+      //   method: "post",
+      //   data: {
+      //     id_product: id,
+      //     id_user: Cookies.get("uid")
+      //   }
+      
+      // })
+      // const result= await res.data
+      // return window.location.reload()
+    }
+  </script>
+  <script>
+    function wait(ms) {
+        return new Promise(resolve=> setTimeout(resolve, ms))
+    }
+    let a= 0
+    async function updateAmount(id, price, amount, count, amount_product) {
+      setTimeout(async ()=> {
+        if(parseInt($(`#sum-p-${id}`).html().replaceAll(",", "").replace("đ", "")) == parseInt(price) && amount == -1) {
+        return swal("Thông báo", "Không thể bớt sản phẩm được nữa")
+      }
+      if(parseInt($(`#amount-product-${id}`).val()) > parseInt(amount_product) ) {
+        $(`#amount-product-${id}`).val(amount_product)
+        return swal("Thông báo", "Đã quá số lượng sản phẩm cho phép")
+
+      }
+      if($(`#amount-product-${id}`).val() <1 ) {
+        return
+      }
+      
+      else {
+        a = parseInt(a) + parseInt(amount)
+        const res = await axios({
+            url: "http://localhost:8000/add_to_cart",
+            method: "post",
+            data: {
+              id_product: id,
+              amount: amount,
+              id_user: Cookies.get("uid"),
+            },
+          });
+          const result = await res.data;
+          $(`#sum-p-${id}`).html(numberWithCommas(Math.round(parseInt(parseInt($(`#sum-p-${id}`).html()) + parseInt((parseInt(count)+ parseInt(a)) * price)) / 1000) * 1000)+ "đ")
+          $(".total-price").html(numberWithCommas(parseInt($(".total-price").html().replaceAll(",", ""))+ parseInt((parseInt(amount)) * price)) + "đ")
+        }
+      }, 1000)
+    }
+  </script>
+</html>

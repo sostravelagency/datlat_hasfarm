@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="employee.css">
+    <script src="employee.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Employee</title>
+    <style>
+        html {
+            background-color: #1d1e22;
+        }
+        * {
+            color: #ffffff80;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .item-navigation-active {
+            background: #323a46;
+        }
+        .employee-profile {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            gap: 16px;
+        }
+        #logout {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="employee-container">
+        <div class="employee-header">
+            <div class="employee-logo">
+                <a href="http://127.0.0.1:5500">
+                    <img class="employee-img-logo" src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="">
+                </a>
+            </div>
+            <div class="employee-search">
+                <input placeholder="Tìm kiếm" class="empoyee-search-input" type="text" style="opacity: 0;">
+            </div>
+            <div class="employee-profile">
+                <div id="username"></div>
+                <div onclick="logout()" id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <div class="main-employee">
+            <div class="main-navigation">
+                <div  class="item-navigation item-navigation-active">
+                    <a href="http://127.0.0.1:5500/employee/dashboard.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/1828/1828762.png" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div id="order-role" class="item-navigation" style="display: none;">
+                    <a href="http://127.0.0.1:5500/employee/order.html">
+                        <img class="item-navigation-img" src="https://toppng.com/uploads/preview/menu-bar-order-my-order-icon-11563381244rqqi52g1re.png" alt="">
+                        <span>Đơn hàng</span>
+                    </a>
+                </div>
+                <div id="product-role" class="item-navigation" style="display: none;">
+                    <a href="http://127.0.0.1:5500/employee/product.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+                        <span>Sản phẩm</span>
+                    </a>
+                </div>
+                <div id="stats-role" class="item-navigation" style="display: none;">
+                    <a href="http://127.0.0.1:5500/employee/stats.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/116/116385.png" alt="">
+                        <span>Thống kê</span>
+                    </a>
+                </div>
+            </div>
+            <div class="main-empliyee-content">
+                <div class="brief-stats">
+                    <div class="count-all-products count-1">
+                        <div class="item-count-x">Tất cả sản phẩm</div>
+                        <div id="count-product" class="item-main-x">0</div>
+                    </div>
+                    <div class="count-all-products count-2">
+                        <div class="item-count-x">Người dùng</div>
+                        <div id="count-user" class="item-main-x">0</div>
+                    </div>
+                    <div class="count-all-products count-3">
+                        <div class="item-count-x">Tổng doanh thu</div>
+                        <div id="count-budget" class="item-main-x">0đ</div>
+                    </div>
+                    <div class="count-all-products count-4">
+                        <div class="item-count-x">Đơn đặt hàng</div>
+                        <div id="count-order" class="item-main-x">0</div>
+                    </div>
+                    <!-- <div class="count-all-products count-4">
+                        <div class="item-count-x">Tổng ngân sách</div>
+                        <div id="total-budget" class="item-main-x">0</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    async function getDashboard() {
+        const res= await axios({
+            url: "http://localhost:8000/employee/dashboard",
+            method: "get"
+        })
+        const result= await res.data
+        document.getElementById("count-product").innerHTML= result.countProduct
+        document.getElementById("count-user").innerHTML= result.countUser
+        document.getElementById("count-order").innerHTML= result.countOrder
+        document.getElementById("count-budget").innerHTML= numberWithCommas(_.sumBy(result.budget, function(e) {return parseInt(e.amount) * parseInt(e.price) })) + "đ"
+        // document.getElementById("total-budget").innerHTML= numberWithCommas(_.sumBy(result.revenue, function(e) {return (parseInt(e.price) || 0) * (parseInt(e.amount_product) || 0)}))+ "đ"
+
+    }
+    getDashboard()
+</script>
+<script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<script>
+    async function checkInfo() {
+        try {
+            if(Cookies.get("uid")) {
+            const res= await axios({
+                url: "http://localhost:8000/employee",
+                method: "get",
+                params: {
+                    id: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.[0]?.order_role == 1) {
+                document.getElementById("order-role").style.display= "flex"
+
+            }
+            else {
+                document.getElementById("order-role").style.display= "none"
+            }
+
+            if(result?.[0]?.product_role == 1) {
+                document.getElementById("product-role").style.display= "flex"
+
+            }
+            else {
+                document.getElementById("product-role").style.display= "none"
+
+            }
+            
+            if(result?.[0]?.stats_role == 1) {
+                document.getElementById("stats-role").style.display= "flex"
+
+            }
+            else {
+                document.getElementById("stats-role").style.display= "none"
+
+            }
+            if(result?.[0]?.id) {
+                $("#username").html(result?.[0]?.employeeName)
+            }
+            else {
+                window.location.href= window.location.origin+ "/employee/login.html"
+            }
+            
+            }
+            else {
+                window.location.href= window.location.origin+ "/employee/login.html"
+            }
+            
+        } catch (error) {
+            window.location.href= window.location.origin+ "/employee/login.html"
+        }
+    }
+    checkInfo()
+</script>
+<script>
+    const logout= ()=> {
+        Cookies.remove("uid")
+        return window.location.reload()
+    };
+</script>
+</html>

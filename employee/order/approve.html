@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/employee/employee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.js" integrity="sha512-NXopZjApK1IRgeFWl6aECo0idl7A+EEejb8ur0O3nAVt15njX9Gvvk+ArwgHfbdvJTCCGC5wXmsOUXX+ZZzDQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Employee</title>
+    <style>
+        html {
+            background-color: #1d1e22;
+        }
+        * {
+            color: #ffffff80;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .item-navigation-active {
+            background: #323a46;
+        }
+        .item-1-3-1 {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .employee-profile {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            gap: 16px;
+        }
+        #logout {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="employee-container">
+        <div class="employee-header">
+            <div class="employee-logo">
+                <a href="http://127.0.0.1:5500">
+                    <img class="employee-img-logo" src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="">
+                </a>
+            </div>
+            <div class="employee-search" style="opacity: 0;">
+                <input placeholder="Tìm kiếm" class="empoyee-search-input" type="text">
+            </div>
+            <div class="employee-profile">
+                <div id="username"></div>
+                <div onclick="logout()" id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <div class="main-employee">
+            <div class="main-navigation">
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/employee/dashboard.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/1828/1828762.png" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="item-navigation item-navigation-active">
+                    <a href="http://127.0.0.1:5500/employee/order.html">
+                        <img class="item-navigation-img" src="https://toppng.com/uploads/preview/menu-bar-order-my-order-icon-11563381244rqqi52g1re.png" alt="">
+                        <span>Đơn hàng</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/employee/product.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+                        <span>Sản phẩm</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/employee/stats.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/116/116385.png" alt="">
+                        <span>Thống kê</span>
+                    </a>
+                </div>
+            </div>
+            <style>
+                .ad-af--aass {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                }
+                .sdf-fd-sd--daedae {
+                    padding: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    background-color: #3a3b3c;
+                    border-radius: 5px;
+                }
+                .hhdsjdhjafrs {
+                    background-color: unset;
+                }
+                .dsfd-dds-a-fsdas {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    margin-top: 12px;
+                }
+                .ffd-dfv-sda-eda-ds-as {
+                    width: 100%;
+                    margin-bottom: 12px;
+                    background-color: #3a3b3c;
+                    border-radius: 5px;
+                    padding: 10px;
+                }
+                .sdf-ddfsadfs-asa-s {
+                    padding: 12px;
+                    margin-top: 12px;
+                    background-color: #2e89ff;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 5px;
+                    width: max-content;
+                    cursor: pointer;
+                }
+                .sd-sd-sa-s-gedas {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                }
+                .dsgfsdrfeasdas {
+                    background-color: red;
+                }
+            </style>
+            <div class="main-empliyee-content">
+                <div class="item-1-3-1">
+                    <div class="ad-af--aass">
+                        <a href="http://127.0.0.1:5500/employee/order.html">
+                            <div id="order-pending" class="sdf-fd-sd--daedae hhdsjdhjafrs">
+                                Đơn hàng đang chờ duyệt
+                            </div>
+                        </a>
+                        <a href="http://127.0.0.1:5500/employee/order/approve.html">
+                            <div id="order-approve" class="sdf-fd-sd--daedae">
+                                Đơn hàng đã duyệt
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div id="list-order-approve" class="dsfd-dds-a-fsdas">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .popup-detail-order {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #000
+        }
+        .wrap-popup-edit-product {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #e7e7e7;
+            padding: 10px;
+        }
+        .title-popup-edit-product {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            margin: 12px 0;
+        }
+        .item-popup-edit-product {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .das-sar-a-sae {
+            height: 40px;
+            border: none;
+            width: 350px;
+            outline-color: #2e89ff;
+            padding: 10px;
+            background-color: #d9d9d9;
+            color: #000;
+            font-weight: 600;
+
+        }
+        .t-ewa--a-sass {
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #000;
+        }
+        .ds-eas-fad--as {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .dsds-as-da-s-fda {
+            width: 160px;
+            height: 40px;
+            color: #fff;
+            background-color: #2e89ff;
+            border-radius: 80px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fdaf-sd--daedfa {
+            background-color: #555;
+        }
+        .sdd-s-s-asasas {
+            width: 100%;
+
+        }
+        .sfskldjasasas {
+            width: 100%;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 20px;
+            color: #000;
+        }
+        .fsdjhdjsalsasfs {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: unset;
+        }
+        .info-user-booking * {
+            color: #000 ;
+        }
+    </style>
+    <div id="popup-detail" class="popup-detail-order" style="display: none;">
+        <div class="wrap-popup-edit-product">
+            <div class="title-popup-edit-product">
+                Chi tiết đơn hàng
+            </div>
+            <div id="detail-order" class="sdd-s-s-asasas">
+                
+                
+            </div>
+            <div class="ds-eas-fad--as">
+                <div onclick="approveOrder()" class="dsds-as-da-s-fda">Đã duyệt</div>
+                <div id="cancel-approve" class="dsds-as-da-s-fda fdaf-sd--daedfa">Đóng</div>
+            </div>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+</body>
+<script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<script>
+    async function getListOrderApprove() {
+        const res= await axios({
+            url: "http://localhost:8000/product/order/approve",
+            method: "get",
+            data: {
+                state_order: 0
+            }
+        })
+        const result= await res.data
+        document.getElementById("list-order-approve").innerHTML= result?.reverse()?.map(item=> `
+            <div class="ffd-dfv-sda-eda-ds-as">
+                <div>Tên người đặt: <strong>${item.username}</strong></div>
+                <div>Email: <strong>${item.email}</strong></div>
+                <div>Địa chỉ nhận hàng: <strong>${item.address}</strong></div>
+                <div>Đã đặt hàng lúc: <strong>${moment(item?.time_created).format("HH:mm:ss DD-MM-YYYY")}</strong></div>
+                <div>Ghi chú của người đặt: <strong>${item?.note}</strong></div>
+                <div style="color: #000, margin-bottom: 6px">Phương thức thanh toán: <strong>${item?.method_name }</strong></div>    
+                
+                <div class="sd-sd-sa-s-gedas">
+                    <div><div onclick="getDetailOrder('${item.id_payment}')" class="sdf-ddfsadfs-asa-s"><strong>Chi tiết đơn hàng</strong></div></div>
+                    <!-- <div><div onclick="deleteOrder('${item.id_payment}')" class="sdf-ddfsadfs-asa-s dsgfsdrfeasdas"><strong>Xóa đơn hàng</strong></div></div> -->
+                </div>
+            </div>
+        `).join("")
+       
+    }
+    getListOrderApprove()
+</script>
+<script>
+    async function getDetailOrder(id) {
+        document.getElementById("popup-detail").style.display= "flex"
+        const res= await axios({
+            url: "http://localhost:8000/get_payment",
+            method: "get",
+            params: {
+                id_payment: id
+            }
+        })
+        const result= await res.data
+        function isShip(method, sum) {
+            if(method== "Giao hàng tận nơi") {
+                return parseInt(sum) + parseInt(50000)
+            }
+            else {
+                return parseInt(sum)
+            }
+        }
+        document.getElementById("detail-order").innerHTML= result?.items?.map(item=> {
+            if(parseInt(item.discount) > 0) {
+                return `
+                    <div class="sfskldjasasas">
+                        <img src="${item.image1}" alt="" class="fsdjhdjsalsasfs">
+                        <div>
+                            <div style="margin-bottom: 8px; color: #000; font-size: 18px; font-weight: 600;">${item.product_name}</div>
+                            <div style="color: #000; margin-bottom: 4px;">${numberWithCommas(parseInt(item.price)* (1 - parseInt(item.discount) / 100))}đ x ${item.amount}</div>
+                            <div style="color: #000; margin-bottom: 4px;">= ${numberWithCommas(parseInt(item.price) * parseInt(item.amount) * (1 - parseInt(item.discount) / 100))}đ</div>
+                        </div>
+                    </div>
+                `
+            }
+            else {
+                return `
+            <div class="sfskldjasasas">
+                <img src="${item.image1}" alt="" class="fsdjhdjsalsasfs">
+                <div>
+                    <div style="margin-bottom: 8px; color: #000; font-size: 18px; font-weight: 600;">${item.product_name}</div>
+                    <div style="color: #000; margin-bottom: 4px;">${numberWithCommas(parseInt(item.price))}đ x ${item.amount}</div>
+                    <div style="color: #000; margin-bottom: 4px;">= ${numberWithCommas(parseInt(item.price) * parseInt(item.amount))}đ</div>
+                </div>
+            </div>
+        `
+            }
+        }).join("") 
+        + `
+            <div>
+                <div style="font-size: 24px; font-weight: 600;color: #000; margin-bottom: 4px;">Tổng: ${numberWithCommas(isShip(result.user_book[0].method_name, _.sumBy(result?.items, function(e) {
+                    if(parseInt(e.discount) > 0) {
+                        return parseInt(e.amount) * parseInt(e.price) * (1 - parseInt(e.discount) / 100)
+                        
+                    }
+                    else {
+                        return parseInt(e.amount) * parseInt(e.price)
+                    }
+                })))}đ</div>
+            </div>
+        `
+        +
+        `
+            <div class="info-user-booking" style="color: #000">
+                <div style="color: #000, margin-bottom: 6px">Người đặt hàng: <strong>${result.user_book[0].username}</strong></div>    
+                <div style="color: #000, margin-bottom: 6px">Số điện thoại: <strong>${result.user_book[0].phone_number}</strong></div>    
+                <div style="color: #000, margin-bottom: 6px">Địa chỉ: <strong>${result.user_book[0].address }</strong></div>    
+                <div style="color: #000, margin-bottom: 6px">Ghi chú của người đặt: <strong>${result.user_book[0].note }</strong></div>    
+                <div style="color: #000, margin-bottom: 6px">Phương thức thanh toán: <strong>${result.user_book[0].method_name }</strong></div>    
+
+                <br />
+            </div>
+        `
+    }
+</script>
+<script>
+    async function approveOrder() {
+
+    }
+</script>
+<script>
+    async function deleteOrder(id) {
+        const res= await axios({
+            url: "http://localhost:8000/order/delete",
+            method: "delete",
+            data: {
+                id_payment: id
+            }
+        })
+        const result= await res.data
+        return window.location.reload()
+    }
+</script>
+<script>
+    document.getElementById("cancel-approve").onclick= function() {
+        document.getElementById("popup-detail").style.display= "none"
+    }
+</script>
+<script>
+    async function checkInfo() {
+
+        if(Cookies.get("uid")) {
+            const res= await axios({
+                url: "http://localhost:8000/employee",
+                method: "get",
+                params: {
+                    id: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.[0]?.id) {
+                $("#username").html(result?.[0]?.employeeName)
+            }
+            else {
+                window.location.href= window.location.origin+ "/employee/login.html"
+            }
+        
+        }
+        else {
+            window.location.href= window.location.origin+ "/employee/login.html"
+        }
+    }
+    checkInfo()
+</script>
+<script>
+    const logout= ()=> {
+        Cookies.remove("uid")
+        return window.location.reload()
+    };
+</script>
+</html>

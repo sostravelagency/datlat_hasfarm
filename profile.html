@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .owl-carousel .owl-stage-outer {
+            height: unset !important;
+        }
+    </style>
+    <script src="catalog/view/theme/default/javascript/jquery.lazy.min.js" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            $(".lazy").Lazy({
+                scrollDirection: "vertical",
+                effect: "fadeIn",
+                effectTime: 1500,
+                visibleOnly: true,
+                threshold: 0
+            });
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/base.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/style.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/module.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/iwish.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/bpr-products-module.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/bpr.min.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/stylesheet.css" />
+    <script type="text/javascript" src="catalog/view/theme/vision/javascript/option-selectors.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href="/catalog/view/theme/default/stylesheet/product_option.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" rel="icon" />
+    <script src="/catalog/view/theme/default/javascript/product_option.js" type="text/javascript"></script>
+    <link href="catalog/view/theme/vision/stylesheet_custom/stylesheet.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Profile</title>
+</head>
+<body>
+    <div class="hidden-md hidden-lg opacity_menu"></div>
+    <div class="opacity_filter"></div>
+    <div id="mySidenav" class="sidenav menu_mobile hidden-md hidden-lg">
+        <div class="top_menu_mobile">
+            <span class="close_menu"><img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="La Vie Est Belle Flower Boutique"></span>
+        </div>
+        <div class="content_memu_mb">
+            <div class="link_list_mobile">
+                <ul class="ct-mobile hidden"></ul>
+                <ul class="ct-mobile">
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/">Trang chủ</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/san-pham.html">Sản phẩm</a>
+                        <i class="ti-plus hide_close"></i>
+                        <ul class="sub-menu" style="display:none;">
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hoa-bo.html"><span>- Hoa Bó</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/binh-hoa.html"><span>- Bình Hoa</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/gio-hoa"><span>- Giỏ Hoa</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hop-hoa"><span>- Hộp Hoa</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/ke-hoa-chuc-mung"><span>- Kệ Hoa Chúc Mừng</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/ke-hoa-chia-buon"><span>- Kệ Hoa Chia Buồn</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hoa-cuoi"><span>- Hoa Cưới</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hoa-tulip"><span>- Hoa Tulip</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/thong-tuoi-noel"><span>- Thông Tươi Noel</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/lan-ho-diep"><span>- Lan Hồ Điệp</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/chuyen-cua-la.html">Nghe Hoa Kể</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+    <header class="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <ul class="list-inline topbar_left hidden-sm hidden-xs">
+                            <li>
+                                <a class="welcome_text" href="javascript:void(0)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-6 d-list col-xs-12 a-right topbar_right">
+                        <div class="list-inline a-center f-right">
+                            <ul>
+                                <li class="topbar_currency"> <span id="form-currency">
+        <a href="javascript:void(0)" class="current_currency">
+                                                                                                                                    VND <strong>đ</strong>
+                                        <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="currencies_list">
+                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="EUR">
+                            Euro €                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="GBP">
+                            £ Pound Sterling                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="USD">
+                            $ US Dollar                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="VND">
+                            VND đ                        </a>
+                    </li>
+                                    </ul>
+        <div class="pull-left hidden">
+            <form action="http://127.0.0.1:5500/common/currency/currency" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="code" value="" />
+                <input type="hidden" name="redirect" value="http://127.0.0.1:5500/account/login?redirect=http://127.0.0.1:5500/checkout/cart" />
+            </form>
+        </div>
+    </span>
+                                </li>
+                                <li><a href="http://127.0.0.1:5500/account/login">Đăng nhập</a></li>
+                                <li><a href="http://127.0.0.1:5500/account/register">Đăng ký</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mid-header">
+            <div class="content_header">
+                <div class="header-main">
+                    <div class="container">
+                        <div class="menu-bar-h nav-mobile-button hidden-md hidden-lg">
+                            <a href="#nav-mobile">
+                                <!-- <img src='catalog/view/theme/vision/image/i_menubar.png' alt='menu bar' /> -->
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 text-right">
+                                <div class="logo">
+                                    <a href="http://127.0.0.1:5500/" class="logo-wrapper ">                  
+                                            <img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="La Vie Est Belle Flower Boutique">
+                                        </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9">
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9">
+                                        <div id="search" class="">
+                                            <span class="fa fa-search"></span>
+                                            <div class="input-group search-bar" role="search" style="background-image: url('image/catalog/services/search_box_bg.png')">
+                                                <div class="collection-selector">
+                                                    <select name="category_id" class="search_text">
+                <option class="item-cate search_item" value="0">Tất cả</option>
+                                                            <option class="item-cate search_item" value="197">Thông Tươi Noel</option>
+                                                                                                    <option class="item-cate search_item" value="182">Hoa Bó</option>
+                                                                                                    <option class="item-cate search_item" value="187">Bình Hoa</option>
+                                                                                                    <option class="item-cate search_item" value="186">Giỏ Hoa</option>
+                                                                                                    <option class="item-cate search_item" value="193">Hoa Cưới</option>
+                                                                                                    <option class="item-cate search_item" value="189">Kệ Hoa</option>
+                                                                                            <option class="item-cate search_item" value="195">&nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chia Buồn</option>
+                                                                                                                        <option class="item-cate search_item" value="196">&nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chúc Mừng</option>
+                                                                                                                                <option class="item-cate search_item" value="194">Lan Hồ Điệp</option>
+                                                                                                    <option class="item-cate search_item" value="192">Hoa Tulip</option>
+                                                                                                    <option class="item-cate search_item" value="191">Hộp Hoa</option>
+                                                                    </select>
+                                                </div>
+                                                <div class="form-search">
+                                                    <input type="search" name="search" value="" placeholder="Tìm kiếm" class="input-group-field st-default-search-input search-text" autocomplete="off">
+                                                    <span class="input-group-btn"><button class="btn icon-fallback-text"><i class="fa fa-search" ></i></button></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="header-right">
+                                            <div class="header-acount hidden-lg-down">
+                                                <div id="cart" class="lazi">
+                                                    <div class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg">
+                                                        <div class="mini-cart text-xs-center">
+                                                            <div class="heading-cart">
+                                                                <a class="bg_cart" href="http://127.0.0.1:5500/checkout/cart" title="Giỏ hàng">
+                                                                    <img alt="Giỏ hàng" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="https://res.cloudinary.com/anlqn/image/upload/v1605159235/ex/iufzxvou6n46tcqz83dd.png" class="lazy" />
+                                                                    <span class="count_item count_item_pr cart-total">0</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="top-cart-content">
+                                                                <ul id="cart-sidebar" class="mini-products-list count_li">
+                                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm">
+                                                        <div class="mini-cart text-xs-center">
+                                                            <div class="heading-cart-mobi">
+                                                                <a class="bg_cart" href="http://127.0.0.1:5500/checkout/cart" title="Giỏ hàng">
+                                                                    <img alt="Giỏ hàng" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="catalog/view/theme/vision/image/icon_cart_mobi.png" class="lazy" />
+                                                                    <span class="count_item count_item_pr cart-total">0</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <nav class="header-nav hidden-sm hidden-xs">
+                                            <ul class="item_big pt_custommenu" id="pt_custommenu">
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/">
+                                                        <span>Trang chủ</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/gioi-thieu.html">
+                                                        <span>Giới thiệu</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/san-pham.html">
+                                                        <span>Sản phẩm</span>
+                                                        <i class="fa fa-caret-down"></i>
+                                                    </a>
+                                                    <!-- <ul class="item_small hidden-sm hidden-xs popup" style="display:none;">
+                                                        <div class="block1">
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hoa-bo">
+                                                                    <span>Hoa Bó</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/binh-hoa">
+                                                                    <span>Bình Hoa</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/gio-hoa">
+                                                                    <span>Giỏ Hoa</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hop-hoa">
+                                                                    <span>Hộp Hoa</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/ke-hoa-chuc-mung">
+                                                                    <span>Kệ Hoa Chúc Mừng</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/ke-hoa-chia-buon">
+                                                                    <span>Kệ Hoa Chia Buồn</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hoa-cuoi">
+                                                                    <span>Hoa Cưới</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hoa-tulip">
+                                                                    <span>Hoa Tulip</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/thong-tuoi-noel">
+                                                                    <span>Thông Tươi Noel</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/lan-ho-diep">
+                                                                    <span>Lan Hồ Điệp</span>
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                    </ul> -->
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/chuyen-cua-la.html">
+                                                        <span>Nghe Hoa Kể</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/lien-he.html">
+                                                        <span>Liên hệ</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        <script type="text/javascript">
+                                            var CUSTOMMENU_POPUP_EFFECT = 0;
+                                            var CUSTOMMENU_POPUP_TOP_OFFSET = 50;
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <style>
+        .main-1 {
+            width: 100%;
+        }
+        .title-1 {
+            font-weight: 600;
+            font-size: 24px;
+            text-align: center;
+            margin: 16px 0;
+        }
+        .main-1-2-3 {
+            width: 100%;
+            
+        }
+        .c-flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-2-3-4 {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            border: 1px solid #d9d9d9;
+            padding: 10px;
+        }
+        .main-x-1-2 {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .main-z-1-3 {
+            width: 100px;
+            font-size: 16px;
+        }
+        .main-12-3 {
+            font-weight: 600;
+        }
+    </style>
+    <!-- Main -->
+    <div class="main-1">
+        <div class="title-1">
+            Thông tin người dùng
+        </div>
+        <div class="main-1-2">
+            <div id="c-1" class="main-1-2-3 c-flex-center">
+                <div class="main-2-3-4">
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Họ tên: </div>
+                        <div class="main-12-3" id="username">_</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Email: </div>
+                        <div class="main-12-3" id="email">_</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Số điện thoại: </div>
+                        <div class="main-12-3" id="phoneNumber">_</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Ngân hàng</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Số tài khoản: </div>
+                        <div class="main-12-3" id="account-number">_</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Tên tài khoản: </div>
+                        <div class="main-12-3" id="account-name">_</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Ngân hàng: </div>
+                        <div class="main-12-3" id="bank-name">_</div>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Chi nhánh: </div>
+                        <div class="main-12-3" id="branch">_</div>
+                    </div>
+                    <div onclick="openPopupBank()" class="c-flex-center btn-1 btn-x">
+                        Cập nhật thông tin ngân hàng
+                    </div>
+                    <br>
+                    <div onclick="openPopupMomo()" class="c-flex-center btn-1 btn-x">
+                        Cập nhật thông tin số momo
+                    </div>
+                    <br>
+                    <div onclick="openPopup()" class="c-flex-center btn-1 btn-x">
+                        Cập nhật thông tin cá nhân
+                    </div>
+                    <br>
+                    <a href="history.html">
+                        <div class="c-flex-center btn-1 btn-x">
+                            Lịch sử mua hàng
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <style>
+            #popup, #popup-bank, #popup-momo {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+            .main-popup {
+                width: 100%;
+                max-width: 600px;
+                background-color: #fff;
+                padding: 10px;
+                border-radius: 10px;
+            }
+            .m0a-as {
+                width: 100%;
+                gap: 20px;
+            }
+            .btn-x {
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .btn-1 {
+                background-color: #2e89ff;
+                color: #fff;
+                font-weight: 600;
+            }
+            .btn-2 {
+                background-color: #555 ;
+                color: #000;
+                font-weight: 600;
+            }
+        </style>
+        <div id="popup" class="popup c-flex-center" style="display: none;">
+            <div class="main-popup">
+                <div class="title-1">Sửa thông tin người dùng</div>
+                <br>
+                <div class="main-2-3-4">
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Họ: </div>
+                        <input class="main-12-3" id="inp-fullname" />
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Tên: </div>
+                        <input class="main-12-3" id="inp-username" />
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Số điện thoại: </div>
+                        <input class="main-12-3" id="inp-phoneNumber" />
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Mật khẩu: </div>
+                        <input class="main-12-3" id="inp-password" />
+                    </div>
+                    <div class="m0a-as c-flex-center">
+                        <div onclick="updateUser()" class="c-flex-center btn-1 btn-x">
+                            Sửa
+                        </div>
+                        <div onclick="closePopup()" class="c-flex-center btn-2 btn-x">
+                            Hủy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="popup-bank" class="popup c-flex-center" style="display: none;">
+            <div class="main-popup">
+                <div class="title-1">Cập nhật thông tin ngân hàng</div>
+                <br>
+                <div class="main-2-3-4">
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Số tài khoản: </div>
+                        <input class="main-12-3" id="inp-account-number" />
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Tên tài khoản: </div>
+                        <input class="main-12-3" id="inp-account-name" />
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3" style="width: 100px;">Ngân hàng: </div>
+                        <!-- <input class="main-12-3" id="inp-bank-name" /> -->
+                        <select style="width: 200px;" name="" id="inp-bank-name">
+                            <option value="MB Bank">MB Bank</option>
+                            <option value="Viettin bank">Viettin bank</option>
+                            <option value="Sacombank">Sacombank</option>
+                            <option value="BIDV">BIDV</option>
+                            <option value="Techcombank">Techcombank</option>
+                            <option value="Vietcombank">Vietcombank</option>
+                            <option value="Agribank">Agribank</option>
+                            <option value="Cake">Cake</option>
+                        </select>
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Chi nhánh: </div>
+                        <input class="main-12-3" id="inp-branch" />
+                    </div>
+                    <div class="m0a-as c-flex-center">
+                        <div onclick="updateBank()" class="c-flex-center btn-1 btn-x">
+                            Sửa
+                        </div>
+                        <div onclick="closePopupBank()" class="c-flex-center btn-2 btn-x">
+                            Hủy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div id="popup-momo" class="popup c-flex-center" style="display: none;">
+            <div class="main-popup">
+                <div class="title-1">Cập nhật thông tin số momo</div>
+                <br>
+                <div class="main-2-3-4">
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Số tài khoản momo: </div>
+                        <input class="main-12-3" id="inp-account-number-mm" />
+                    </div>
+                    <div class="main-x-1-2">
+                        <div class="main-z-1-3">Tên tài khoản momo: </div>
+                        <input class="main-12-3" id="inp-account-name-mm" />
+                    </div>
+                    <div class="m0a-as c-flex-center">
+                        <div onclick="updateMomo()" class="c-flex-center btn-1 btn-x">
+                            Sửa
+                        </div>
+                        <div onclick="closePopupMomo()" class="c-flex-center btn-2 btn-x">
+                            Hủy
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    async function checkLogin() {
+      if(Cookies.get("uid")) {
+        const res= await axios({
+          url: "http://localhost:8000/",
+          method: "post",
+          data: {
+            id_user: Cookies.get("uid")
+          }
+        })
+        const result= await res.data  
+        $("#username").html(result[0]?.full_name+" " + result[0].username)
+        $("#email").html(result[0]?.email)
+        $("#phoneNumber").html(result[0]?.phone_number)
+
+        $("#inp-username").val(result[0].username)
+        $("#inp-email").val(result[0]?.email)
+        $("#inp-phoneNumber").val(result[0]?.phone_number)
+        $("#inp-fullname").val(result[0]?.full_name)
+        return console.log(result)
+      }
+      else {
+        document.getElementById("c-1").innerHTML= `
+            <div style="text-align: center">Bạn cần đăng nhập để tiếp tục</div>
+        `
+      }
+    }
+    checkLogin()
+    function logout() {
+      Cookies.remove("uid")
+      return window.location.reload()
+    }
+  </script>
+<script>
+    async function getBank() {
+        const res= await axios({
+            url: "http://localhost:8000/user/bank",
+            method: "get",
+            params: {
+                id_user: Cookies.get("uid")
+            }
+        })
+        const result= await res.data
+        document.getElementById("account-number").innerHTML= result[0]?.account_number || "_"
+        document.getElementById("account-name").innerHTML = result[0]?.account_name || "_"
+        document.getElementById("bank-name").innerHTML = result[0]?.bank_name || "_"
+        document.getElementById("branch").innerHTML = result[0]?.branch || "_"
+        $("#inp-account-number").val(result[0]?.account_number || "_")
+        $("#inp-account-name").val(result[0]?.account_name || "_")
+        $("#inp-bank-name").val(result[0]?.bank_name || "_")
+        $("#inp-branch").val(result[0]?.branch || "_")
+    }
+    getBank()
+</script>
+<script>
+    async function getMomo() {
+        const res= await axios({
+            url: "http://localhost:8000/get/momo",
+            method: "get",
+            params: {
+                id_user: Cookies.get("uid")
+            }
+        })
+        const result= await res.data
+        // document.getElementById("account-number-mm").innerHTML= result[0]?.momo_name || "_"
+        // document.getElementById("account-name-mm").innerHTML = result[0]?.momo_account || "_"
+        $("#inp-account-number-mm").val(result[0]?.momo_name || "_")
+        $("#inp-account-name-mm").val(result[0]?.momo_account || "_")
+        
+    }
+    getMomo()
+</script>
+<script>
+    async function updateMomo() {
+        const res= await axios({
+            url: "http://localhost:8000/update/momo",
+            method: "patch",
+            data: {
+                momo_account: $("#inp-account-number-mm").val(),
+                momo_name: $("#inp-account-name-mm").val(),
+                id_user: Cookies.get("uid"),
+            }
+        })
+        const result= await res.data
+        swal("Thông báo", "Bạn đã cập nhật thông tin thành công!", "success")
+        .then(()=> window.location.reload())
+    }
+</script>
+<script>
+async function updateUser() {
+    const res= await axios({
+        url: "http://localhost:8000/user/update",
+        method: "patch",
+        data: {
+            full_name: $("#inp-fullname").val(),
+            username: $("#inp-username").val(),
+            id_user: Cookies.get("uid"),
+            phone_number: $("#inp-phoneNumber").val(),
+             password: $("#inp-password").val()
+        }
+    })
+    const result= await res.data
+    swal("Thông báo", "Bạn đã cập nhật thông tin thành công!", "success")
+    .then(()=> window.location.reload())
+}
+</script>
+<script>
+    async function updateBank() {
+        const res= await axios({
+            url: "http://localhost:8000/user/bank/update",
+            method: "patch",
+            data: {
+                account_number: $("#inp-account-number").val(),
+                account_name: $("#inp-account-name").val(),
+                id_user: Cookies.get("uid"),
+                bank_name: $("#inp-bank-name").val(),
+                branch: $("#inp-branch").val()
+            }
+        })
+        const result= await res.data
+        swal("Thông báo", "Bạn đã cập nhật thông tin thành công!", "success")
+        .then(()=> window.location.reload())
+    }
+</script>
+
+<script>
+    function openPopup() {
+        document.getElementById("popup").style.display= "flex"
+    }
+    function closePopup() {
+        document.getElementById("popup").style.display= "none"
+    }
+    function openPopupBank() {
+        document.getElementById("popup-bank").style.display= "flex"
+
+    }
+    function closePopupBank() {
+        document.getElementById("popup-bank").style.display= "none"
+    }
+    function openPopupMomo() {
+        document.getElementById("popup-momo").style.display= "flex"
+    }
+    function closePopupMomo() {
+        document.getElementById("popup-momo").style.display= "none"
+    }
+</script>
+</html> 

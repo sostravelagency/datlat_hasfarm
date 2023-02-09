@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="employee.css">
+    <script src="employee.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Employee</title>
+    <style>
+        html {
+            background-color: #1d1e22;
+        }
+        * {
+            color: #ffffff80;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .item-navigation-active {
+            background: #323a46;
+        }
+        .wrap-main-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .item-main-content {
+            width: 25%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+
+        }
+        .img-item-main-content {
+            width: 100px;
+            aspect-ratio: 1 / 1;
+            height: auto;
+            border-radius: 5px;
+
+        }
+        .item-1-main-content {
+            display: flex;
+            gap: 20px;
+        }
+        .change-product {
+            display: flex;  
+            align-items: center;
+            gap: 16px;
+        }
+        .btn-product {
+            border: none;
+            outline: none;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .edit-product {
+            background-color: #2e89ff;
+        }
+        .delete-product {
+            background-color: red;
+        }
+        .change-product {
+            margin-top: 12px;
+        }
+        .employee-profile {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            gap: 16px;
+        }
+        #logout {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="employee-container">
+        <div class="employee-header">
+            <div class="employee-logo">
+                <a href="http://127.0.0.1:5500">
+                    <img class="employee-img-logo" src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="">
+                </a>
+            </div>
+            <div class="employee-search" style="opacity: 0;">
+                <input id="input-search" placeholder="Tìm kiếm" class="empoyee-search-input" type="text">
+            </div>
+            <div class="employee-profile">
+                <div id="username"></div>
+                <div onclick="logout()" id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <div class="main-employee">
+            <div class="main-navigation">
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/employee/dashboard.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/1828/1828762.png" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div id="order-role" class="item-navigation" style="display: none;">
+                    <a href="http://127.0.0.1:5500/employee/order.html">
+                        <img class="item-navigation-img" src="https://toppng.com/uploads/preview/menu-bar-order-my-order-icon-11563381244rqqi52g1re.png" alt="">
+                        <span>Đơn hàng</span>
+                    </a>
+                </div>
+                <div id="product-role" class="item-navigation item-navigation-active" style="display: none;">
+                    <a href="http://127.0.0.1:5500/employee/product.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+                        <span>Sản phẩm</span>
+                    </a>
+                </div>
+                <div id="stats-role" class="item-navigation" style="display: none;">
+                    <a href="http://127.0.0.1:5500/employee/stats.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/116/116385.png" alt="">
+                        <span>Thống kê</span>
+                    </a>
+                </div>
+            </div>
+            <style>
+                .sjd-fd-das--fgasd:hover {
+                    background-color: #3a3b3c;
+                }
+            </style>
+            <div class="main-empliyee-content">
+                <div onclick="openPopupAdd()" id="btn-add-product" class="sjd-fd-das--fgasd" style="margin: 12px 0; display: flex; align-items: center; gap: 16px; cursor: pointer; width: max-content; padding: 12px; border-radius: 10px;">
+                    <img style="width: 24px; height: 24px; filter: invert(100%) sepia(0%) saturate(7421%) hue-rotate(337deg) brightness(88%) contrast(94%);" src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="">
+                    <span>Thêm sản phẩm</span>
+                </div>
+                <div id="wrap-main-content" class="wrap-main-content">
+                    
+                </div>
+            </div>
+        </div>
+        <style>
+            .popup-edit-product, .popup-add-product {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: 0;
+                left: 0;
+                z-index: 999;
+                background-color: rgba(255, 255, 255, 0.3);
+                color: #000
+            }
+            .wrap-popup-edit-product {
+                width: 100%;
+                max-width: 600px;
+                background-color: #fff;
+                border-radius: 5px;
+                border: 1px solid #e7e7e7;
+                padding: 10px;
+            }
+            .title-popup-edit-product {
+                font-size: 24px;
+                font-weight: 600;
+                color: #000;
+                text-align: center;
+                margin: 12px 0;
+            }
+            .item-popup-edit-product {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .das-sar-a-sae {
+                height: 40px;
+                border: none;
+                width: 350px;
+                outline-color: #2e89ff;
+                padding: 10px;
+                background-color: #d9d9d9;
+                color: #000;
+                font-weight: 600;
+
+            }
+            .t-ewa--a-sass {
+                width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #000;
+            }
+            .ds-eas-fad--as {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+            .dsds-as-da-s-fda {
+                width: 160px;
+                height: 40px;
+                color: #fff;
+                background-color: #2e89ff;
+                border-radius: 80px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .fdaf-sd--daedfa {
+                background-color: #555;
+            }
+        </style>
+        <div id="popup-edit" class="popup-edit-product" style="display: none;">
+            <div class="wrap-popup-edit-product">
+                <div class="title-popup-edit-product">
+                    Sửa sản phẩm
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Tên sản phẩm: </div>
+                    <input id="inp-product-name" type="text" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Giá sản phẩm: </div>
+                    <input id="inp-product-price" type="text" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Mô tả sản phẩm: </div>
+                    <input id="inp-product-description" type="text" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Hình ảnh 1: </div>
+                    <input id="inp-product-image-1" type="file" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Hình ảnh 2: </div>
+                    <input id="inp-product-image-2" type="file" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Thể loại: </div>
+                    <select id="inp-product-category" class="das-sar-a-sae">
+
+                    </select>
+                </div>
+                <input id="inp-product-id" type="hidden">
+                <div style="color: #2dc275" id="msg"></div>
+                <input type="hidden" id="i-1">
+                <input type="hidden" id="i-2">
+                <input type="hidden" id="id-product">
+                <div class="ds-eas-fad--as">
+                    <div onclick="updateProduct()" class="dsds-as-da-s-fda">Cập nhật</div>
+                    <div id="cancel-edit" class="dsds-as-da-s-fda fdaf-sd--daedfa">Hủy</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="popup-add" class="popup-add-product" style="display: none;">
+            <div class="wrap-popup-edit-product">
+                <div class="title-popup-edit-product">
+                    Thêm sản phẩm
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Tên sản phẩm: </div>
+                    <input id="inp-add-product-name" type="text" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Giá sản phẩm: </div>
+                    <input id="inp-add-product-price" type="text" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Mô tả sản phẩm: </div>
+                    <input id="inp-add-product-description" type="text" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Hình ảnh 1: </div>
+                    <input id="inp-add-product-image-1" type="file" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Hình ảnh 2: </div>
+                    <input id="inp-add-product-image-2" type="file" class="das-sar-a-sae">
+                </div>
+                <div class="item-popup-edit-product">
+                    <div class="t-ewa--a-sass">Thể loại: </div>
+                    <select id="inp-product-category-2" class="das-sar-a-sae">
+
+                    </select>
+                </div>
+                <div style="color: #2dc275" id="msg"></div>
+                <div class="ds-eas-fad--as">
+                    <div onclick="addProduct()" class="dsds-as-da-s-fda">Lưu</div>
+                    <div id="cancel-add" class="dsds-as-da-s-fda fdaf-sd--daedfa">Hủy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<script>
+    let fuse;
+    let oldResult= []
+    let rewriteResult= []
+    const options = {
+        threshold: 0.8,
+        keys: [
+            "product_name",
+            "category_name",
+            "newPrice"
+        ]
+        };
+    async function getProduct() {
+        const res= await axios({
+            url: "http://localhost:8000/list-product",
+            method: "get",
+        })
+        const result= await res.data
+        oldResult= result
+        result?.map(item=> rewriteResult.push({...item, newPrice: parseInt(item.price).toString()}))
+        fuse = new Fuse(rewriteResult, options);
+        document.getElementById("wrap-main-content").innerHTML= rewriteResult?.map(item=> `
+            <div class="item-main-content">
+                <div class="item-1-main-content">
+                    <img src="${item.image1}" alt="" class="img-item-main-content">
+                    <div>
+                        <div style="font-size: 16px;font-weight: 600; margin-bottom: 8px; height: 40px">${item.product_name}</div>
+                        <div style="font-size: 16px;">${numberWithCommas(parseInt(item.price))}đ</div>
+                        <div class="change-product">
+                            <button id="btn-edit-product" onclick="getDetailProduct(${item.id})" class="edit-product btn-product">Sửa</button>    
+                            <button onclick="deleteProduct(${item.id})" class="delete-product btn-product">Xóa</button>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join("")
+        
+    }
+    getProduct()
+</script>
+<script>
+    document.getElementById("input-search").oninput= function() {
+        if(this.value.length <=0 ) {
+            document.getElementById("wrap-main-content").innerHTML= oldResult?.map(item=> `
+            <div class="item-main-content">
+                <div class="item-1-main-content">
+                    <img src="${item.image1}" alt="" class="img-item-main-content">
+                    <div>
+                        <div style="font-size: 16px;font-weight: 600; margin-bottom: 8px; height: 40px">${item.product_name}</div>
+                        <div style="font-size: 16px;">${numberWithCommas(parseInt(item.price))}đ</div>
+                        <div class="change-product">
+                            <button id="btn-edit-product" onclick="getDetailProduct(${item.id})" class="edit-product btn-product">Sửa</button>    
+                            <button onclick="deleteProduct(${item.id})" class="delete-product btn-product">Xóa</button>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join("")
+        }
+        else {
+
+            document.getElementById("wrap-main-content").innerHTML= fuse.search(this.value)?.map(item=> `
+                <div class="item-main-content">
+                    <div class="item-1-main-content">
+                        <img src="${item.item.image1}" alt="" class="img-item-main-content">
+                        <div>
+                            <div style="font-size: 16px;font-weight: 600; margin-bottom: 8px; height: 40px">${item.item.product_name}</div>
+                            <div style="font-size: 16px;">${numberWithCommas(parseInt(item.item.price))}đ</div>
+                            <div class="change-product">
+                                <button id="btn-edit-product" onclick="getDetailProduct(${item.item.id})" class="edit-product btn-product">Sửa</button>    
+                                <button onclick="deleteProduct(${item.item.id})" class="delete-product btn-product">Xóa</button>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join("")
+        }
+    }
+</script>
+<script>
+    document.getElementById("cancel-edit").onclick= function() {
+        document.getElementById("popup-edit").style.display= "none"
+    }
+    async function getDetailProduct(id) {
+        getCategory()
+        document.getElementById("popup-edit").style.display= "flex"
+        const res= await axios({
+            url: "http://localhost:8000/get/detail-product",
+            method: "get",
+            params: {
+                id_product: id
+            }
+        })
+        const result= await res.data
+        document.getElementById("inp-product-name").value= result[0].product_name
+        document.getElementById("inp-product-price").value= result[0].price
+        document.getElementById("inp-product-description").value= result[0].product_description
+        // document.getElementById("inp-product-image-1").value= result[0].image1
+        // document.getElementById("inp-product-image-2").value= result[0].image2
+        document.getElementById("inp-product-category").value= result[0].category_id
+        document.getElementById("inp-product-id").value= id
+        document.getElementById("id-product").value=  result[0].id_product
+        document.getElementById("i-1").value= result[0].image1
+        document.getElementById("i-2").value= result[0].image2
+    }
+    async function updateProduct() {
+        if(document.getElementById("inp-product-image-1").files?.length > 0) {
+            const formData= new FormData()
+            formData.append("image1", $("#inp-product-image-1")[0].files[0])
+            formData.append("image2", $("#inp-product-image-1")[0].files[0])
+            const res1= await axios({
+                url: "http://localhost:8000/image/upload",
+                method: "post",
+                data: formData
+            })
+            const result1= await res1.data
+            const res= await axios({
+                url: "http://localhost:8000/product/update",
+                method: "patch",
+                data: {
+                    id: $("#id-product").val(),
+                    product_name: document.getElementById("inp-product-name").value,
+                    price: document.getElementById("inp-product-price").value,
+                    product_description: document.getElementById("inp-product-description").value,
+                    image1: result1.image1,
+                    image2: result1.image2,
+                    category_id: document.getElementById("inp-product-category").value
+                }
+            })
+            const result= await res.data
+            document.getElementById("msg").innerHTML= result.msg
+            setTimeout(()=> {
+                document.getElementById("popup-edit").style.display= "none"
+                window.location.reload()
+            }, 1500)
+        }
+        else {
+            const res= await axios({
+                url: "http://localhost:8000/product/update",
+                method: "patch",
+                data: {
+                    id: $("#id-product").val(),
+                    product_name: document.getElementById("inp-product-name").value,
+                    price: document.getElementById("inp-product-price").value,
+                    product_description: document.getElementById("inp-product-description").value,
+                    image1: $("#i-1").val(),
+                    image2: $("#i-2").val(),
+                    category_id: document.getElementById("inp-product-category").value
+                }
+            })
+            const result= await res.data
+            document.getElementById("msg").innerHTML= result.msg
+            setTimeout(()=> {
+                document.getElementById("popup-edit").style.display= "none"
+                window.location.reload()
+            }, 1500)
+        }
+        
+    }
+</script>
+<script>
+    $("#cancel-add").on("click", function() {
+        $("#popup-add").css("display", "none")
+    })
+    async function openPopupAdd() {
+        getCategory()
+        document.getElementById("popup-add").style.display= "flex"
+    }
+    async function addProduct() {
+        const formData= new FormData()
+        formData.append("image1", $("#inp-add-product-image-1")[0].files[0])
+        formData.append("image2", $("#inp-add-product-image-2")[0].files[0])
+        const res1= await axios({
+            url: "http://localhost:8000/image/upload",
+            method: "post",
+            data: formData
+        })
+        const result1= await res1.data
+        const res= await axios({
+            url: "http://localhost:8000/add/product",
+            method: "post",
+            data: {
+                product_name: $("#inp-add-product-name").val(),
+                price: $("#inp-add-product-price").val(),
+                product_description: $("#inp-add-product-description").val(),
+                image1: result1.image1,
+                image2: result1.image2,
+                category_id: $("#inp-product-category-2").val()
+            }
+        })
+        const result= await res.data
+        document.getElementById("msg").innerHTML= result.msg
+        setTimeout(()=> {
+            document.getElementById("popup-add").style.display= "none"
+            window.location.reload()
+        }, 1500)
+        console.log(result)
+    }
+</script>
+<script>
+    async function deleteProduct(id) {
+        swal("Thông báo", "Bạn có muốn xóa sản phẩm này không ?", {
+        buttons: {
+          cancel: "Hủy",
+          ok: "Xóa"
+        },
+      })
+      .then(async (value) => {
+        switch (value) {
+          case "cancel":
+            break
+          case "ok":
+            const res= await axios({
+                url: "http://localhost:8000/product/delete",
+                method: "delete",
+                data: {
+                    id_product: id
+                }
+            })
+            const result= await res.data
+            swal("Thông báo", "Xóa sản phẩm thành công", "success")
+            .then(()=> window.location.reload())
+            break;
+          
+          default:
+            break
+        }
+      });
+        // const res= await axios({
+        //     url: "http://localhost:8000/product/delete",
+        //     method: "delete",
+        //     data: {
+        //         id_product: id
+        //     }
+        // })
+        // const result= await res.data
+        // return window.location.reload()
+    }
+</script>
+<script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<script>
+    async function checkInfo() {
+
+        if(Cookies.get("uid")) {
+            const res= await axios({
+                url: "http://localhost:8000/employee",
+                method: "get",
+                params: {
+                    id: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.[0]?.id) {
+                $("#username").html(result?.[0]?.employeeName)
+            }
+            else {
+                window.location.href= window.location.origin+ "/employee/login.html"
+            }
+            if(result?.[0]?.order_role == 1) {
+                document.getElementById("order-role").style.display= "flex"
+
+            }
+            else {
+                document.getElementById("order-role").style.display= "none"
+            }
+
+            if(result?.[0]?.product_role == 1) {
+                document.getElementById("product-role").style.display= "flex"
+
+            }
+            else {
+                document.getElementById("product-role").style.display= "none"
+
+            }
+            
+            if(result?.[0]?.stats_role == 1) {
+                document.getElementById("stats-role").style.display= "flex"
+
+            }
+            else {
+                document.getElementById("stats-role").style.display= "none"
+
+            }
+        
+        }
+        else {
+            window.location.href= window.location.origin+ "/employee/login.html"
+        }
+    }
+    checkInfo()
+</script>
+<script>
+    const logout= ()=> {
+        Cookies.remove("uid")
+        return window.location.reload()
+    };
+</script>
+<script>
+    async function getCategory() {
+        const res= await axios({
+            url: "http://localhost:8000/category",
+            method: "get",
+        })
+        const result= await res.data
+        document.getElementById("inp-product-category").innerHTML= result?.map(item=> `
+            <option style="color: #000" value=${item.id}>${item.category_name}</option>
+        `)
+        document.getElementById("inp-product-category-2").innerHTML= result?.map(item=> `
+            <option style="color: #000" value=${item.id}>${item.category_name}</option>
+        `)
+        return console.log(result)
+    }
+</script>
+</html>

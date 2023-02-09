@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>Đăng nhập tài khoản</title>
+    <style>
+        .owl-carousel .owl-stage-outer {
+            height: unset !important;
+        }
+    </style>
+    <script src="catalog/view/theme/default/javascript/jquery.lazy.min.js" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            $(".lazy").Lazy({
+                scrollDirection: "vertical",
+                effect: "fadeIn",
+                effectTime: 1500,
+                visibleOnly: true,
+                threshold: 0
+            });
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/base.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/style.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/module.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/iwish.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/bpr-products-module.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/bpr.min.css" />
+    <link rel="stylesheet" type="text/css" href="catalog/view/theme/vision/stylesheet/stylesheet.css" />
+    <script type="text/javascript" src="catalog/view/theme/vision/javascript/option-selectors.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href="/catalog/view/theme/default/stylesheet/product_option.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" rel="icon" />
+    <script src="/catalog/view/theme/default/javascript/product_option.js" type="text/javascript"></script>
+    <link href="catalog/view/theme/vision/stylesheet_custom/stylesheet.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="account-login">
+    <div class="hidden-md hidden-lg opacity_menu"></div>
+    <div class="opacity_filter"></div>
+    <div id="mySidenav" class="sidenav menu_mobile hidden-md hidden-lg">
+        <div class="top_menu_mobile">
+            <span class="close_menu"><img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="DaLat Hasfarm Flower Boutique"></span>
+        </div>
+        <div class="content_memu_mb">
+            <div class="link_list_mobile">
+                <ul class="ct-mobile hidden"></ul>
+                <ul class="ct-mobile">
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/">Trang chủ</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/san-pham.html">Sản phẩm</a>
+                        <i class="ti-plus hide_close"></i>
+                       
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/chuyen-cua-la.html">Nghe Hoa Kể</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+    <header class="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <ul class="list-inline topbar_left hidden-sm hidden-xs">
+                            <li>
+                                <a class="welcome_text" href="javascript:void(0)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-6 d-list col-xs-12 a-right topbar_right">
+                        <div class="list-inline a-center f-right">
+                            <ul>
+                                <li class="topbar_currency"> <span id="form-currency">
+        <a href="javascript:void(0)" class="current_currency">
+                                                                                                                                    VND <strong>đ</strong>
+                                        <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="currencies_list">
+                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="EUR">
+                            Euro €                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="GBP">
+                            £ Pound Sterling                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="USD">
+                            $ US Dollar                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="VND">
+                            VND đ                        </a>
+                    </li>
+                                    </ul>
+        <div class="pull-left hidden">
+            <form action="http://127.0.0.1:5500/common/currency/currency" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="code" value="" />
+                <input type="hidden" name="redirect" value="http://127.0.0.1:5500/account/login?redirect=http://127.0.0.1:5500/checkout/cart" />
+            </form>
+        </div>
+    </span>
+                                </li>
+                                <li><a href="http://127.0.0.1:5500/login.html">Đăng nhập</a></li>
+                                <li><a href="http://127.0.0.1:5500/register.html">Đăng ký</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mid-header">
+            <div class="content_header">
+                <div class="header-main">
+                    <div class="container">
+                        <div class="menu-bar-h nav-mobile-button hidden-md hidden-lg">
+                            <a href="#nav-mobile">
+                                <!-- <img src='catalog/view/theme/vision/image/i_menubar.png' alt='menu bar' /> -->
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 text-right">
+                                <div class="logo">
+                                    <a href="http://127.0.0.1:5500/" class="logo-wrapper ">                  
+                                            <img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="DaLat Hasfarm Flower Boutique">
+                                        </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9">
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9">
+                                        <div id="search" class="">
+                                            <span class="fa fa-search"></span>
+                                            <div class="input-group search-bar" role="search" style="background-image: url('image/catalog/services/search_box_bg.png')">
+                                                <div class="collection-selector">
+                                                    <select name="category_id" class="search_text">
+                <option class="item-cate search_item" value="0">Tất cả</option>
+                                                            <option class="item-cate search_item" value="197">Thông Tươi Noel</option>
+                                                                                                    <option class="item-cate search_item" value="182">Hoa Bó</option>
+                                                                                                    <option class="item-cate search_item" value="187">Bình Hoa</option>
+                                                                                                    <option class="item-cate search_item" value="186">Giỏ Hoa</option>
+                                                                                                    <option class="item-cate search_item" value="193">Hoa Cưới</option>
+                                                                                                    <option class="item-cate search_item" value="189">Kệ Hoa</option>
+                                                                                            <option class="item-cate search_item" value="195">&nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chia Buồn</option>
+                                                                                                                        <option class="item-cate search_item" value="196">&nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chúc Mừng</option>
+                                                                                                                                <option class="item-cate search_item" value="194">Lan Hồ Điệp</option>
+                                                                                                    <option class="item-cate search_item" value="192">Hoa Tulip</option>
+                                                                                                    <option class="item-cate search_item" value="191">Hộp Hoa</option>
+                                                                    </select>
+                                                </div>
+                                                <div class="form-search">
+                                                    <input type="search" name="search" value="" placeholder="Tìm kiếm" class="input-group-field st-default-search-input search-text" autocomplete="off">
+                                                    <span class="input-group-btn"><button class="btn icon-fallback-text"><i class="fa fa-search" ></i></button></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="header-right">
+                                            <div class="header-acount hidden-lg-down">
+                                                <div id="cart" class="lazi">
+                                                    <div class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg">
+                                                        <div class="mini-cart text-xs-center">
+                                                            <div class="heading-cart">
+                                                                <a class="bg_cart" href="http://127.0.0.1:5500/cart.html" title="Giỏ hàng">
+                                                                    <img alt="Giỏ hàng" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="https://res.cloudinary.com/anlqn/image/upload/v1605159235/ex/iufzxvou6n46tcqz83dd.png" class="lazy" />
+                                                                    <span class="count_item count_item_pr cart-total">0</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="top-cart-content">
+                                                                <ul id="cart-sidebar" class="mini-products-list count_li">
+                                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm">
+                                                        <div class="mini-cart text-xs-center">
+                                                            <div class="heading-cart-mobi">
+                                                                <a class="bg_cart" href="http://127.0.0.1:5500/cart.html" title="Giỏ hàng">
+                                                                    <img alt="Giỏ hàng" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="catalog/view/theme/vision/image/icon_cart_mobi.png" class="lazy" />
+                                                                    <span class="count_item count_item_pr cart-total">0</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <nav class="header-nav hidden-sm hidden-xs">
+                                            <ul class="item_big pt_custommenu" id="pt_custommenu">
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/">
+                                                        <span>Trang chủ</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/gioi-thieu.html">
+                                                        <span>Giới thiệu</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/san-pham.html">
+                                                        <span>Sản phẩm</span>
+                                                    </a>
+                                               
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/chuyen-cua-la.html">
+                                                        <span>Nghe Hoa Kể</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/lien-he.html">
+                                                        <span>Liên hệ</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        <script type="text/javascript">
+                                            var CUSTOMMENU_POPUP_EFFECT = 0;
+                                            var CUSTOMMENU_POPUP_TOP_OFFSET = 50;
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="layout-login-v2">
+        <section class="breadcrumb-shop">
+            <div class="container">
+                <ul class="breadcrumb-arrows" itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="home">
+                        <a itemprop="item" href="http://127.0.0.1:5500/">
+                            <span itemprop="name"><i class="fa fa-home"></i> Trang chủ</span>
+                        </a>
+                        <span><i class="fa fa-angle-right"></i></span>
+                        <meta itemprop="position" content="0" />
+                    </li>
+                    <!-- <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="">
+                        <a itemprop="item" href="http://127.0.0.1:5500/account.html">
+                            <span itemprop="name">Tài khoản</span>
+                        </a>
+                        <span><i class="fa fa-angle-right"></i></span>
+                        <meta itemprop="position" content="1" />
+                    </li> -->
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">Đăng nhập</span>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <div class="container margin-bottom-20 margin-top-30">
+            <div class="notify">
+            </div>
+            <h1 class="hidden">Đăng nhập tài khoản</h1>
+            <div class="row justify-content-md-center">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div class="account-box-shadow">
+                        <div id="login" class="row">
+                            <div class="col-lg-6 col-md-6 evo-account-content ">
+                                <div id="evo-login">
+                                    <form >
+                                        <h1 class="customer_login__title">Đăng nhập</h1>
+
+                                        <div class="_form-signup clearfix">
+                                            <fieldset class="form-group--customize required">
+                                                <label class="control-label hidden" for="input-email">Địa chỉ Email</label>
+                                                <input type="text" name="email" value="" placeholder="Địa chỉ Email" id="input-email" class="form-control--customize" />
+                                            </fieldset>
+                                            <fieldset class="form-group--customize required margin-bottom-0">
+                                                <label class="control-label hidden" for="input-password">Mật khẩu</label>
+                                                <input type="password" name="password" value="" placeholder="Mật khẩu" id="input-password" class="form-control--customize" />
+                                            </fieldset>
+                                            <div class="clearfix"></div>
+                                            <p class="text-right recover">
+                                                <a href="javascript:;" class="btn-link-style" onclick="showRecoverPasswordForm();" title="Quên mật khẩu?">Quên mật khẩu?</a>
+                                            </p>
+                                            <div id="msg"></div>
+                                            <div class="pull-xs-left text-center" style="margin-top: 15px;margin-bottom: 20px;">
+                                                <button type="button" class="btn-submit-form" id="submit-form-login">Đăng nhập</button>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="line-break hidden">
+                                                <span>hoặc đăng nhập qua</span>
+                                            </div>
+                                            <script>
+                                                function loginFacebook() {
+                                                    var o = "https://www.facebook.com/v3.2/dialog/oauth" + encodeURIParams({
+                                                        client_id: '305026214550237',
+                                                        redirect_uri: "https://ankasport.exdomain.net/account/facebook_account_callback",
+                                                        state: JSON.stringify({
+                                                            redirect_url: window.location.href
+                                                        }),
+                                                        scope: "email",
+                                                        response_type: "code"
+                                                    }, !0);
+                                                    window.location.href = o
+                                                }
+
+                                                function loginGoogle() {
+                                                    var o = "https://accounts.google.com/o/oauth2/v2/auth" + encodeURIParams({
+                                                        client_id: '71825014291-ei671s6l7jqmd3p90ko6apg7l90nmfnb.apps.googleusercontent.com',
+                                                        redirect_uri: "https://ankasport.exdomain.net/account/google_account_callback",
+                                                        scope: "email profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile",
+                                                        access_type: "online",
+                                                        state: JSON.stringify({
+                                                            redirect_url: window.location.href
+                                                        }),
+                                                        response_type: "code"
+                                                    }, !0);
+                                                    window.location.href = o
+                                                }
+
+                                                function encodeURIParams(o, e) {
+                                                    var n = [];
+                                                    for (var i in o)
+                                                        if (o.hasOwnProperty(i)) {
+                                                            var t = o[i];
+                                                            null != t && n.push(encodeURIComponent(i) + "=" + encodeURIComponent(t))
+                                                        }
+                                                    return 0 == n.length ? "" : (e ? "?" : "") + n.join("&")
+                                                }
+                                            </script>
+                                            <div class="social-login text-center hidden d-none">
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div id="recover-password" class="form-signup" style="display:none;">
+                                    <div>
+                                        <div class="customer_login__title">Phục hồi mật khẩu</div>
+                                        <div class="fix-sblock text-left">
+                                            Bạn quên mật khẩu? Nhập địa chỉ email để lấy lại mật khẩu qua email. </div>
+                                        <div class="form-signup clearfix">
+                                            <fieldset class="form-group--customize">
+                                                <label class="hidden">Địa chỉ Email<span class="required">*</span></label>
+                                                <input type="text" name="email" value="" placeholder="Địa chỉ Email" id="input-email-forgotten" class="form-control form-control-lg" />
+                                            </fieldset>
+                                        </div>
+                                        <div class="action_bottom text-center">
+                                            <button class="btn-submit-form" id="submit-form-forgotten" style="margin-top: 10px;" value="Lấy lại mật khẩu">Lấy lại mật khẩu</button>
+                                        </div>
+                                        <div class="text-login text-center">
+                                            <p>Quay lại <a href="javascript:;" class="btn-link-style btn-register" onclick="hideRecoverPasswordForm();" title="Quay lại">tại đây</a></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 account-banner ">
+                                <div class="account__description">
+                                    <div class=" customer_login__title">Quyền lợi thành viên</div>
+                                    <div class="account_policy_content">Bằng việc tạo tài khoản bạn có thể mua sắm nhanh hơn, theo dõi trạng thái đơn hàng, và theo dõi đơn hàng mà bạn đã đặt.</div>
+                                    <a href="http://127.0.0.1:5500/register.html" class="btn-continue" style="margin-top: 30px; padding: 10px; color: #fff;background-color: black;position: relative;top: 20px; ">Đăng ký</a>
+                                    <div></div>
+                                    <br>
+                                    <div></div>
+                                    <a href="http://127.0.0.1:5500/employee/dashboard.html" class="btn-continue" style="margin-top: 30px; padding: 10px; color: #fff;background-color: black;position: relative;top: 20px; ">Đăng nhập cho nhân viên</a>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        function showRecoverPasswordForm() {
+            document.getElementById('recover-password').style.display = 'block';
+            document.getElementById('evo-login').style.display = 'none';
+        }
+
+        function hideRecoverPasswordForm() {
+            document.getElementById('recover-password').style.display = 'none';
+            document.getElementById('evo-login').style.display = 'block';
+        }
+    </script>
+
+    <div class="container">
+        <div class="row">
+            <div id="content" class="col-sm-12"> </div>
+        </div>
+    </div>
+    <div class="content_mainbottom">
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var html = '<a href="javascript:void(0)"' +
+                ' target="_self" class="">' +
+                '   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="http://127.0.0.1:5500/image/cache/catalog/services/payment-187x77.png" class="lazy"  alt="" />' +
+                '</a>';
+
+            $('.footer .site-footer .widget-ft .payment').append(html);
+        });
+    </script>
+    <footer id="footer">
+
+        <div class="footer-inner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="footer-column-last pull-left">
+                            <div class="info_footer">
+                                <div class="item" style="color: #474c5f; font-family: Roboto, HelveticaNeue, 'Helvetica Neue', sans-serif; font-size: 14px;">
+                                    <h4 class="title-menu4 icon_none_first" style="font-family: Roboto, HelveticaNeue, 'Helvetica Neue', sans-serif; line-height: normal; color: #ffffff; margin: 10px 0px; font-size: 1.28571em; letter-spacing: 0.5px; position: relative;">Tiệm Hoa DaLat Hasfarm</h4>
+                                    <ul class="contact contact_x" style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; list-style: none outside;">
+                                        <li style="font-family: Arial, sans-serif; position: relative; color: #acacac; margin-bottom: 20px; line-height: 25px;"><span class="txt_content_child" style="display: inherit;">Địa chỉ: &nbsp;91/1 Nguyễn Hữu Cảnh, Phường 22, Quận B&igrave;nh Thạnh, TPHCM</span>Hotline: <a class="text-is-phone-number" href="tel:0919%2089%2079%2069">0919 89 79 69</a></li>
+                                    </ul>
+                                </div>
+                                <div class="item" style="color: #474c5f; font-family: Roboto, HelveticaNeue, 'Helvetica Neue', sans-serif; font-size: 14px;">&nbsp;</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div class="fix-mobile5">
+                            <div class="footer-column pull-left">
+                                <h4>Chính sách</h4>
+                                <ul class="links">
+                                    <li><a href="javascript:;">Chính sách vận chuyển</a></li>
+                                    <li><a href="javascript:;">Chính sách bảo mật</a></li>
+                                    <li><a href="javascript:;">Quy định &amp; Chính sách</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-2">
+                        <div class="fix-mobile5">
+                            <div class="footer-column pull-left">
+                                <h4>Hỗ trợ</h4>
+                                <ul class="links">
+                                    <li><a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a></li>
+                                    <li><a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class=" fix-mobile5">
+                            <div class="footer-column">
+                                <h4>FACEBOOK</h4>
+                                <div class="fb-page" data-href="https://www.facebook.com/tiemhoa.lavieestbelle" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3">
+                        <div class="footer-column thongketruycap">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="coppyright"><span id="copyright">&copy; Copyright 2020-2022 DaLat Hasfarm. </span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <button id="btn_show_cart" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-popupcart-modal-lg" style="display: none;"></button>
+
+    <div class="modal fade bs-popupcart-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Giỏ hàng </h4>
+                </div>
+                <div class="modal-body" id="load_info_cart"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tiếp tục mua hàng</button>
+                    <a href="checkout.html" class="btn btn-primary">Tiến hành thanh toán</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        /* Sau khi tat khung popup cart, cap nhat lai gio hang tren header */
+        $('.bs-popupcart-modal-lg').on('hidden.bs.modal', function(e) {
+            $.ajax({
+                url: '/checkout/cart/getTotalProductInCart',
+                type: 'post',
+                dataType: 'json',
+                beforeSend: function() {},
+                complete: function() {},
+                success: function(json) {
+                    var out = json['total'].substr(0, json['total'].indexOf(' '));
+                    $('#cart-total').html(out);
+                    $('#cart > ul').load('/common/cart/info ul li');
+                }
+            });
+        });
+    </script>
+
+</body>
+    <script>
+        $("#submit-form-login").on("click", function() {
+            login()
+        })
+        async function login() {
+            const res= await axios({
+                url: "http://localhost:8000/login",
+                method: "post",
+                data: {
+                    email: $("#input-email").val(),
+                    password: $("#input-password").val()
+                }
+            })
+            const result= await res.data
+            if(result.login=== false ) {
+                $("#msg").html(result.msg)
+            }
+            else {
+                $("#msg").html(result.msg)
+                Cookies.set("uid", result.id_user[0].id_user)
+                window.location.href= window.location.origin
+            }
+            console.log(result)
+        }
+    </script>
+    <script>
+        async function get_cart() {
+            if(Cookies.get("uid")) {
+                const res= await axios({
+                    url: "http://localhost:8000/get_cart",
+                    method: "post",
+                    data: {
+                        id_user: Cookies.get("uid")
+                    }
+                })
+                const result= await res.data
+                if(result?.length <= 0 ) {
+                    document.getElementById("cart-sidebar").innerHTML= `<div class="no-item">
+                    <p>Giỏ hàng của bạn trống</p>
+                </div>`
+                }
+                else {
+                    document.getElementById("cart-sidebar").innerHTML= "<ul class='list-item-cart'>" + result?.map?.(item=> `
+                        <li class="item productid-0">
+                            <div class="border_list">
+                                <a class="product-image" href="http://127.0.0.1:5500/product.html?productId=${item.id_product}" title="${item.product_name}">
+                                    <img src="${item.image1}" data-src="${item.image1}" class="lazy" width="100">
+                                </a>
+                                <div class="detail-item">
+                                    <div class="product-details">
+                                        <p class="product-name">
+                                            <a class="text2line" href="http://127.0.0.1:5500/product.html?productId=${item.id_product}">${item.product_name}</a>
+                                        </p>
+                                    </div>
+                                    <div class="product-details-bottom">
+                                        <span class="price">${item.price}đ</span>
+                                        <div class="quantity-select qty_drop_cart">x ${item.amount}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                    `).join("") + "</ul>"+ 
+                    `<div class="pd">
+                            <div class="top-subtotal">Thành tiền: <span id="total-price" class="price total-price">0đ</span></div>
+                            <div class="top-subtotal">Tổng số: <span class="price total-price">0đ</span></div>
+                        </div>
+                        <div class="pd right_ct">
+                            <a href="http://127.0.0.1:5500/cart.html" class="btn btn-primary"><span>Giỏ hàng</span></a>
+                            <a href="http://127.0.0.1:5500/checkout.html" class="btn btn-white"><span>Thanh toán</span></a>
+                        </div>`
+
+                    $(".total-price").html(numberWithCommas(_.sumBy(result, function(e){ return parseInt(e.amount) * parseInt(e.price)})))
+                    $(".count_item").html(_.sumBy(result, function(e){ return parseInt(e.amount)}))
+                }
+            }
+            else {
+                document.getElementById("cart-sidebar").innerHTML= `<div class="no-item">
+                    <p>Đăng nhập để tiếp tục</p>
+                </div>`
+            }
+        }
+        get_cart()
+        async function remove_item_cart() {
+
+        }
+    </script>
+    <script>
+        $("#submit-form-forgotten").on("click",async function() {
+            $(this).html("Chúng tôi đã gửi mật khẩu về email của bạn")
+            const res= await axios({
+                url: "http://localhost:8000/forgot-password",
+                method: "post",
+                data: {
+                    email: $("#input-email-forgotten").val()
+                }
+            })
+            const result= await res.data
+            return result
+            
+        })
+    </script>
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <title>Tìm kiếm</title>
+    <base href="http://127.0.0.1:5500/" />
+    <style>
+      .owl-carousel .owl-stage-outer {
+        height: unset !important;
+      }
+      .loop_products_thumbnail_img_wrapper img {
+        aspect-ratio: 1 / 1;
+      }
+    </style>
+    <script
+      src="catalog/view/theme/default/javascript/jquery.lazy.min.js"
+      defer
+    ></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        $(".lazy").Lazy({
+          scrollDirection: "vertical",
+          effect: "fadeIn",
+          effectTime: 1500,
+          visibleOnly: true,
+          threshold: 0,
+        });
+      });
+    </script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/themify-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/base.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/module.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/responsive.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/iwish.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/bpr-products-module.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/bpr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="catalog/view/theme/vision/stylesheet/stylesheet.css"
+    />
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/jquery-3.3.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/jquery.gmap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/option-selectors.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/api.jquery.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/owl.carousel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/bootstrap.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/cs.script.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/appear.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/main.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/jquery.elevatezoom.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/common.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="catalog/view/theme/vision/javascript/custom.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="/catalog/view/theme/default/stylesheet/product_option.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen"
+    />
+    <link href="http://127.0.0.1:5500/product/search" rel="canonical" />
+    <link
+      href="http://127.0.0.1:5500/image/catalog/logo/logo-lavieestbelle.jpg"
+      rel="icon"
+    />
+    <script
+      src="/catalog/view/theme/default/javascript/product_option.js"
+      type="text/javascript"
+    ></script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=360369072625912&ev=PageView&noscript=1"
+    /></noscript>
+    <link
+      href="catalog/view/theme/vision/stylesheet_custom/stylesheet.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  </head>
+
+  <body class="product-search">
+    <div class="hidden-md hidden-lg opacity_menu"></div>
+    <div class="opacity_filter"></div>
+    <div id="mySidenav" class="sidenav menu_mobile hidden-md hidden-lg">
+      <div class="top_menu_mobile">
+        <span class="close_menu"
+          ><img
+            src="http://127.0.0.1:5500/image/catalog/logo/logo-lavieestbelle.jpg"
+            alt="La Vie Est Belle Flower Boutique"
+        /></span>
+      </div>
+      <div class="content_memu_mb">
+        <div class="link_list_mobile">
+          <ul class="ct-mobile hidden"></ul>
+          <ul class="ct-mobile">
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/">Trang chủ</a>
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a>
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/san-pham.html">Sản phẩm</a>
+              <i class="ti-plus hide_close"></i>
+            
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/chuyen-cua-la.html">Nghe Hoa Kể</a>
+            </li>
+            <li class="level0 level-top parent level_ico">
+              <a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <ul class="list-inline topbar_left hidden-sm hidden-xs">
+                <li>
+                  <a class="welcome_text" href="javascript:void(0)"></a>
+                </li>
+              </ul>
+            </div>
+            <div
+              class="col-md-6 col-sm-6 d-list col-xs-12 a-right topbar_right"
+            >
+              <div class="list-inline a-center f-right">
+                <ul>
+                  <li class="topbar_currency">
+                    <span id="form-currency">
+                      <a href="javascript:void(0)" class="current_currency">
+                        VND <strong>đ</strong>
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                      <ul class="currencies_list">
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="EUR"
+                          >
+                            Euro €
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="GBP"
+                          >
+                            £ Pound Sterling
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="USD"
+                          >
+                            $ US Dollar
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            class="currency-select"
+                            href="javascript:void(0)"
+                            name="VND"
+                          >
+                            VND đ
+                          </a>
+                        </li>
+                      </ul>
+                      <div class="pull-left hidden">
+                        <form
+                          action="http://127.0.0.1:5500/common/currency/currency"
+                          method="post"
+                          enctype="multipart/form-data"
+                        >
+                          <input type="hidden" name="code" value="" />
+                          <input
+                            type="hidden"
+                            name="redirect"
+                            value="http://127.0.0.1:5500/product/search?category_id=0&amp;search=hoa"
+                          />
+                        </form>
+                      </div>
+                    </span>
+                  </li>
+                  <li>
+                    <a href="http://127.0.0.1:5500/account/login.html">Đăng nhập</a>
+                  </li>
+                  <li>
+                    <a href="http://127.0.0.1:5500/account/register.html">Đăng ký</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mid-header">
+        <div class="content_header">
+          <div class="header-main">
+            <div class="container">
+              <div class="menu-bar-h nav-mobile-button hidden-md hidden-lg">
+                <a href="#nav-mobile">
+                  <i class="fa fa-bars"></i>
+                </a>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-md-3 text-right">
+                  <div class="logo">
+                    <a href="http://127.0.0.1:5500/" class="logo-wrapper">
+                      <img
+                        src="http://127.0.0.1:5500/image/catalog/logo/logo-lavieestbelle.jpg"
+                        alt="La Vie Est Belle Flower Boutique"
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-9 col-md-9">
+                  <div class="row">
+                    <div class="col-lg-9 col-md-9">
+                      <div id="search" class="">
+                        <span class="fa fa-search"></span>
+                        <div
+                          class="input-group search-bar"
+                          role="search"
+                          style="
+                            background-image: url('image/catalog/services/search_box_bg.png');
+                          "
+                        >
+                          <div class="collection-selector">
+                            <select name="category_id" class="search_text">
+                              <option class="item-cate search_item" value="0">
+                                Tất cả
+                              </option>
+                              <option class="item-cate search_item" value="197">
+                                Thông Tươi Noel
+                              </option>
+                              <option class="item-cate search_item" value="182">
+                                Hoa Bó
+                              </option>
+                              <option class="item-cate search_item" value="187">
+                                Bình Hoa
+                              </option>
+                              <option class="item-cate search_item" value="186">
+                                Giỏ Hoa
+                              </option>
+                              <option class="item-cate search_item" value="193">
+                                Hoa Cưới
+                              </option>
+                              <option class="item-cate search_item" value="189">
+                                Kệ Hoa
+                              </option>
+                              <option class="item-cate search_item" value="195">
+                                &nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chia Buồn
+                              </option>
+                              <option class="item-cate search_item" value="196">
+                                &nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chúc Mừng
+                              </option>
+                              <option class="item-cate search_item" value="194">
+                                Lan Hồ Điệp
+                              </option>
+                              <option class="item-cate search_item" value="192">
+                                Hoa Tulip
+                              </option>
+                              <option class="item-cate search_item" value="191">
+                                Hộp Hoa
+                              </option>
+                            </select>
+                          </div>
+                          <div class="form-search">
+                            <input
+                              type="search"
+                              name="search"
+                              value="hoa"
+                              placeholder="Tìm kiếm"
+                              class="input-group-field st-default-search-input search-text"
+                              id="query-search"
+                              autocomplete="off"
+                            />
+                            <span class="input-group-btn"
+                              ><button id="btn-search" class="btn icon-fallback-text">
+                                <i class="fa fa-search"></i></button
+                            ></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <script>
+                      $("#btn-search").on("click", function() {
+                        window.location.href= window.location.origin+ "/search.html"+ "?query_search="+$("#query-search").val()
+                      })
+                    </script>
+                    <div class="col-lg-3 col-md-3">
+                      <div class="header-right">
+                        <div class="header-acount hidden-lg-down">
+                          <div id="cart" class="lazi">
+                            <div
+                              class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg"
+                            >
+                              <div class="mini-cart text-xs-center">
+                                <div class="heading-cart">
+                                  <a
+                                    class="bg_cart"
+                                    href="http://127.0.0.1:5500/cart.html"
+                                    title="Giỏ hàng"
+                                  >
+                                    <img
+                                      alt="Giỏ hàng"
+                                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                                      data-src="https://res.cloudinary.com/anlqn/image/upload/v1605159235/ex/iufzxvou6n46tcqz83dd.png"
+                                      class="lazy"
+                                    />
+                                    <span
+                                      class="count_item count_item_pr cart-total"
+                                      >0</span
+                                    >
+                                  </a>
+                                </div>
+                                <div class="top-cart-content">
+                                  <ul
+                                    id="cart-sidebar"
+                                    class="mini-products-list count_li"
+                                  >
+                                    <div class="no-item">
+                                      <p>Giỏ hàng của bạn trống!</p>
+                                    </div>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div
+                              class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm"
+                            >
+                              <div class="mini-cart text-xs-center">
+                                <div class="heading-cart-mobi">
+                                  <a
+                                    class="bg_cart"
+                                    href="http://127.0.0.1:5500/cart.html"
+                                    title="Giỏ hàng"
+                                  >
+                                    <img
+                                      alt="Giỏ hàng"
+                                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
+                                      data-src="catalog/view/theme/vision/image/icon_cart_mobi.png"
+                                      class="lazy"
+                                    />
+                                    <span
+                                      class="count_item count_item_pr cart-total"
+                                      >0</span
+                                    >
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12">
+                      <nav class="header-nav hidden-sm hidden-xs">
+                        <ul class="item_big pt_custommenu" id="pt_custommenu">
+                          <li class="nav-item pt_menu">
+                            <a class="a-img" href="http://127.0.0.1:5500/">
+                              <span>Trang chủ</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/gioi-thieu.html"
+                            >
+                              <span>Giới thiệu</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/san-pham.html"
+                            >
+                              <span>Sản phẩm</span>
+                            </a>
+                             
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/chuyen-cua-la.html"
+                            >
+                              <span>Nghe Hoa Kể</span>
+                            </a>
+                          </li>
+                          <li class="nav-item pt_menu">
+                            <a
+                              class="a-img"
+                              href="http://127.0.0.1:5500/lien-he.html"
+                            >
+                              <span>Liên hệ</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                      <script type="text/javascript">
+                        var CUSTOMMENU_POPUP_EFFECT = 0;
+                        var CUSTOMMENU_POPUP_TOP_OFFSET = 50;
+                      </script>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="bread-crumb">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="breadcrumb">
+              <li class="home">
+                <a href="http://127.0.0.1:5500/">
+                  <span><i class="fa fa-home"></i> Trang chủ</span>
+                </a>
+                <span><i class="fa">/</i></span>
+              </li>
+              <li><strong>Tìm kiếm</strong></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="signup search-main">
+      <div class="container">
+        <div class="row">
+          <div
+            id="content"
+            class="main_container collection margin-bottom-30 col-sm-12 col-xs-12 col-md-12"
+          >
+            
+            <h2>Các sản phẩm thỏa mãn tiêu chí tìm kiếm</h2>
+            <div class="sortPagiBar" style="margin-top: 40px">
+              <div class="srt">
+                <div class="wr_sort col-sm-12">
+                  <div class="text-sm-right">
+                    <div id="sort-by" class="sorby_xxx"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <section
+              class="products-view products-view-grid collection_reponsive"
+            >
+              <!-- <div id="not-found" class="">
+                <p>Không tìm thấy sản phẩm phù hợp với điều kiện tìm kiếm.</p>
+              </div> -->
+                <div id="list-item-search" class="row">
+                  
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $("#button-search").bind("click", function () {
+        url = "/product/search";
+
+        var search = $("#content input[name='search']").prop("value");
+
+        if (search) {
+          url += "?search=" + encodeURIComponent(search);
+        }
+
+        var category_id = $("#content select[name='category_id']").prop(
+          "value"
+        );
+
+        if (category_id > 0) {
+          url += "&category_id=" + encodeURIComponent(category_id);
+        }
+
+        var sub_category = $(
+          "#content input[name='sub_category']:checked"
+        ).prop("value");
+
+        if (sub_category) {
+          url += "&sub_category=true";
+        }
+
+        var filter_description = $(
+          "#content input[name='description']:checked"
+        ).prop("value");
+
+        if (filter_description) {
+          url += "&description=true";
+        }
+
+        location = url;
+      });
+
+      $("#content input[name='search']").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+          $("#button-search").trigger("click");
+        }
+      });
+
+      $("select[name='category_id']").on("change", function () {
+        if (this.value == "0") {
+          $("input[name='sub_category']").prop("disabled", true);
+        } else {
+          $("input[name='sub_category']").prop("disabled", false);
+        }
+      });
+
+      $("select[name='category_id']").trigger("change");
+    </script>
+    <div class="content_mainbottom">
+      <div class="container">
+        <div class="row"></div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var html =
+          '<a href="javascript:void(0)"' +
+          ' target="_self" class="">' +
+          '   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="http://127.0.0.1:5500/image/cache/catalog/services/payment-187x77.png" class="lazy"  alt="" />' +
+          "</a>";
+
+        $(".footer .site-footer .widget-ft .payment").append(html);
+      });
+    </script>
+    <footer id="footer">
+      <div class="footer-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+              <div class="footer-column-last pull-left">
+                <div class="info_footer">
+                  <div
+                    class="item"
+                    style="
+                      color: #474c5f;
+                      font-family: Roboto, HelveticaNeue, 'Helvetica Neue',
+                        sans-serif;
+                      font-size: 14px;
+                    "
+                  >
+                    <h4
+                      class="title-menu4 icon_none_first"
+                      style="
+                        font-family: Roboto, HelveticaNeue, 'Helvetica Neue',
+                          sans-serif;
+                        line-height: normal;
+                        color: #ffffff;
+                        margin: 10px 0px;
+                        font-size: 1.28571em;
+                        letter-spacing: 0.5px;
+                        position: relative;
+                      "
+                    >
+                      Tiệm Hoa La Vie Est Belle
+                    </h4>
+                    <ul
+                      class="contact contact_x"
+                      style="
+                        margin-right: 0px;
+                        margin-bottom: 0px;
+                        margin-left: 0px;
+                        padding: 0px;
+                        list-style: none outside;
+                      "
+                    >
+                      <li
+                        style="
+                          font-family: Arial, sans-serif;
+                          position: relative;
+                          color: #acacac;
+                          margin-bottom: 20px;
+                          line-height: 25px;
+                        "
+                      >
+                        <span class="txt_content_child" style="display: inherit"
+                          >Địa chỉ: &nbsp;91/1 Nguyễn Hữu Cảnh, Phường 22, Quận
+                          B&igrave;nh Thạnh, TPHCM</span
+                        >Hotline:
+                        <a
+                          class="text-is-phone-number"
+                          href="tel:0919%2089%2079%2069"
+                          >0919 89 79 69</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="item"
+                    style="
+                      color: #474c5f;
+                      font-family: Roboto, HelveticaNeue, 'Helvetica Neue',
+                        sans-serif;
+                      font-size: 14px;
+                    "
+                  >
+                    &nbsp;
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <div class="fix-mobile5">
+                <div class="footer-column pull-left">
+                  <h4>Chính sách</h4>
+                  <ul class="links">
+                    <li>
+                      <a href="javascript:;"
+                        >Chính sách vận chuyển</a
+                      >
+                    </li>
+                    <li>
+                      <a href="javascript:;"
+                        >Chính sách bảo mật</a
+                      >
+                    </li>
+                    <li>
+                      <a href="javascript:;"
+                        >Quy định &amp; Chính sách</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <div class="fix-mobile5">
+                <div class="footer-column pull-left">
+                  <h4>Hỗ trợ</h4>
+                  <ul class="links">
+                    <li><a href="http://127.0.0.1:5500/lien-he.html">Liên hệ</a></li>
+                    <li>
+                      <a href="http://127.0.0.1:5500/gioi-thieu.html">Giới thiệu</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+              <div class="fix-mobile5">
+                <div class="footer-column">
+                  <h4>FACEBOOK</h4>
+                  <div
+                    class="fb-page"
+                    data-href="https://www.facebook.com/tiemhoa.lavieestbelle"
+                    data-small-header="false"
+                    data-adapt-container-width="true"
+                    data-hide-cover="false"
+                    data-show-facepile="true"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3">
+              <div class="footer-column thongketruycap"></div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="row">
+              <div class="coppyright">
+                <span id="copyright"
+                  >&copy; Copyright 2020-2022 La Vie Est Belle.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <button
+      id="btn_show_cart"
+      type="button"
+      class="btn btn-primary"
+      data-toggle="modal"
+      data-target=".bs-popupcart-modal-lg"
+      style="display: none"
+    ></button>
+
+    <div
+      class="modal fade bs-popupcart-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i> Giỏ hàng
+            </h4>
+          </div>
+          <div class="modal-body" id="load_info_cart"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Tiếp tục mua hàng
+            </button>
+            <a href="http://127.0.0.1:5500/checkout.html" class="btn btn-primary"
+              >Tiến hành thanh toán</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      /* Sau khi tat khung popup cart, cap nhat lai gio hang tren header */
+      $(".bs-popupcart-modal-lg").on("hidden.bs.modal", function (e) {
+        $.ajax({
+          url: "/checkout/cart/getTotalProductInCart",
+          type: "post",
+          dataType: "json",
+          beforeSend: function () {},
+          complete: function () {},
+          success: function (json) {
+            var out = json["total"].substr(0, json["total"].indexOf(" "));
+            $("#cart-total").html(out);
+            $("#cart > ul").load("/common/cart/info ul li");
+          },
+        });
+      });
+    </script>
+    <script>
+      const options = {
+        keys: [
+          "product_name",
+          "category_name",
+          "price"
+        ]
+      };
+      $("#query-search").val(new URLSearchParams(window.location.search).get("query_search"))
+      $("#input-search").val(new URLSearchParams(window.location.search).get("query_search"))
+      document.title= "Tìm kiếm - "+ new URLSearchParams(window.location.search).get("query_search")
+      async function getProduct() {
+        const res= await axios({
+          url: "http://localhost:8000/list-product",
+          method: "get",
+        })
+        const result= await res.data
+        const fuse = new Fuse(result, options);
+        const listSearch= (fuse.search(new URLSearchParams(window.location.search).get("query_search")))
+        if(listSearch?.length > 0 ){ 
+          document.getElementById("list-item-search").innerHTML= listSearch?.map(item=> `
+          <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
+            <div class="product-col">
+              <div class="product-box product-box-1">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-left-f">
+                    <div class="product-thumbnail">
+                      <div class="image_container">
+                        <a
+                          class="image_link display_flex"
+                          href="http://127.0.0.1:5500/product.html?productId=${item.item.id}"
+                          title=${item.item.image}
+                        >
+                          <div class="loop_products_thumbnail_img_wrapper front">
+                            <img
+                              src="${item.item.image1}"
+                              alt=${item.item.image1}
+                            />
+                          </div>
+                          <div class="loop_products_additional_img_wrapper back">
+                            <img
+                              src="${item.item.image1}"
+                              alt=${item.item.image2}
+                            />
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-right-f pad-col-15"
+                  >
+                    <div class="product-info a-left">
+                      <div class="info-inner">
+                        <h4 class="product-name">
+                          <a
+                            class="text2line"
+                            href="http://127.0.0.1:5500/product.html?productId=${item.item.id}"
+                            title=${item.item.image}
+                            >${item.item.product_name}</a
+                          >
+                        </h4>
+                        <div class="product-hide">
+                          <div class="price-box clearfix">
+                            <div class="special-price">
+                              <span class="price product-price">${numberWithCommas(parseInt(item.item.price))}đ</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="actions">
+                        <form class="variants">
+                          <a
+                            type="button"
+                            class="button btn-cart add_to_cart"
+                            title="Mua ngay"
+                            href="https://lavieestbelle.vn/checkout/cart/add?product_id=1357&amp;redirect=true"
+                          >
+                            <span>Mua ngay</span>
+                          </a>
+                        </form>
+                        <div class="eye-product">
+                          <a
+                            href="http://127.0.0.1:5500/product.html?productId=${item.item.id}"
+                            title=${item.item.image}
+                          >
+                            <img
+                              class="eye-img"
+                              src="catalog/view/theme/vision/image/eye.png"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>        
+              </div>
+            </div>
+          </div>
+        `).join("")
+        }
+        else {
+          document.getElementById("content").innerHTML= `<div class="fjlkdjkjdksasa"style="font-size: 20px; text-align: center;height: 200px">Không tìm thấy sản phẩm yêu cầu</div>`
+        }
+        
+      };
+      getProduct()
+    </script>
+  </body>
+  <script>
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  </script>
+</html>

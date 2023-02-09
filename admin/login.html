@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+      integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+      :root {
+        --transparent: transparent;
+        --black: #000;
+        --white: #fff;
+
+        --gunmetal-100: #d4d5d7;
+        --gunmetal-200: #9b9da1;
+        --gunmetal-400: #63656a;
+        --gunmetal-500: #2a2d34;
+        --gunmetal-800: #17191d;
+
+        --blue-400: #6caef1;
+        --blue-500: #3c91e6;
+      }
+
+      *,
+      *::after,
+      *::before {
+        padding: 0;
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        box-sizing: border-box;
+      }
+
+      input,
+      button {
+        border: 0;
+        border-radius: 0.25rem;
+      }
+
+      /* CSS */
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-width: 100vw;
+        min-height: 100vh;
+        background-color: var(--gunmetal-800);
+        color: var(--gunmetal-200);
+      }
+
+      .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .ph-dog {
+        font-size: 115px;
+        color: var(--blue-500);
+      }
+
+      .title {
+        color: var(--gunmetal-100);
+        font-weight: 700;
+        font-size: 2rem;
+        line-height: 2rem;
+        margin-top: 1rem;
+      }
+
+      .good {
+        color: var(--gunmetal-400);
+        font-size: 1.125rem;
+        margin-top: 0.6rem;
+      }
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 400px;
+        gap: 1rem;
+        margin-top: 2.5rem;
+      }
+
+      .label-account,
+      .label-password,
+      .label-remember {
+        display: flex;
+      }
+
+      .label-account,
+      .label-password {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .label-remember {
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .account-span,
+      .password-span {
+        color: var(--gunmetal-200);
+        font-weight: 600;
+        line-height: 1.25rem;
+      }
+
+      .input-account-container,
+      .input-password-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.75rem;
+        background-color: var(--gunmetal-500);
+        border-radius: 0.25rem;
+        transition-property: color, background-color, border-color,
+          text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+
+      .input-account-container:focus-within,
+      .input-password-container:focus-within {
+        box-shadow: inset 0 0 0 calc(2px + 0px) var(--blue-500);
+      }
+
+      .input-account-container i,
+      .input-password-container i {
+        font-size: 24px;
+      }
+
+      .input-account,
+      .input-password {
+        font-size: 0.875rem;
+        line-height: 1rem;
+        color: var(--gunmetal-200);
+        background-color: var(--transparent);
+        outline: none;
+        flex: 1;
+      }
+
+      .input-account::placeholder,
+      .input-password::placeholder {
+        color: var(--gunmetal-400);
+      }
+
+      .input-verify {
+        display: none;
+      }
+
+      .btn-checkbox {
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 2px;
+        background-color: var(--gunmetal-500);
+        border-radius: 0.25rem;
+        cursor: pointer;
+      }
+
+      .btn-checkbox .ph-check {
+        display: block;
+        color: var(--blue-500);
+        font-size: 20px;
+      }
+
+      .btn-sign-in {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem 1rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        font-weight: 600;
+        color: var(--black);
+        background: var(--blue-500);
+        transition-property: color, background-color, border-color,
+          text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+        cursor: pointer;
+      }
+
+      .btn-sign-in:hover {
+        background-color: var(--blue-400);
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 2rem;
+        gap: 1rem;
+      }
+
+      .footer-link {
+        color: var(--gunmetal-400);
+        font-size: 0.875rem;
+        line-height: 1rem;
+        text-decoration: underline;
+        transition-property: color, background-color, border-color,
+          text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+
+      .footer-link:hover {
+        color: var(--gunmetal-200);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <i class="ph-dog"></i>
+        <h2 class="title">
+          <a href="http://127.0.0.1:5500">
+            <img
+              style="width: 200px"
+              src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png"
+              alt=""
+            />
+          </a>
+        </h2>
+        <span class="good">Login Admin</span>
+      </header>
+
+      <form name="signin" class="form">
+        <label for="account" class="label-account">
+          <span class="account-span">Tài khoản</span>
+
+          <div class="input-account-container">
+            <i class="ph-envelope"></i>
+            <input
+              type="text"
+              name="account"
+              id="account"
+              class="input-account"
+              placeholder="Tài khoản"
+              autofocus
+              autocomplete="off"
+            />
+          </div>
+        </label>
+
+        <label for="password" class="label-password">
+          <span class="password-span">Mật khẩu</span>
+
+          <div class="input-password-container">
+            <i class="ph-lock"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="input-password"
+              autocomplete="off"
+              placeholder="*************"
+            />
+          </div>
+        </label>
+        <div id="msg"></div>
+
+        <button onclick="login()" type="button" class="btn-sign-in">Đăng nhập</button>
+      </form>
+
+      <footer class="footer"></footer>
+
+      <div id="container-6f994c72f6caa154b79fc6f66f252146"></div>
+    </div>
+    <script>
+        async function checkInfo() {
+        
+        if(Cookies.get("uid")) {
+            try {
+                const res= await axios({
+                url: "http://localhost:8000/admin",
+                method: "get",
+                params: {
+                    id: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.[0]?.id) {
+                $("#username").html(result?.[0]?.adminName)
+                window.location.href= window.location.origin+ "/admin/dashboard.html"
+
+            }
+            else {
+            }
+        
+        } catch (error) {
+        }
+            
+        }
+        else {
+        }
+    }
+    checkInfo()
+    </script>
+    <script>
+      async function login() {
+        try {
+          const res = await axios({
+          url: "http://localhost:8000/admin/login",
+          method: "post",
+          data: {
+            account: $("#account").val(),
+            password: $("#password").val()
+          },
+        });
+        const result= await res.data
+        $("#msg").html(result.msg)
+        if(result.login === true) {
+            Cookies.set("uid", result.id[0].id)
+            return window.location.reload()
+        }
+        return console.log(result)
+        } catch (error) {
+          
+        }
+      }
+    </script>
+  </body>
+</html>

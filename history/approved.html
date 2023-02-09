@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .owl-carousel .owl-stage-outer {
+            height: unset !important;
+        }
+    </style>
+    <script src="../catalog/view/theme/default/javascript/jquery.lazy.min.js" defer></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            $(".lazy").Lazy({
+                scrollDirection: "vertical",
+                effect: "fadeIn",
+                effectTime: 1500,
+                visibleOnly: true,
+                threshold: 0
+            });
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/base.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/style.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/module.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/iwish.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/bpr-products-module.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/bpr.min.css" />
+    <link rel="stylesheet" type="text/css" href="../catalog/view/theme/vision/stylesheet/stylesheet.css" />
+    <script type="text/javascript" src="catalog/view/theme/vision/javascript/option-selectors.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link href="../catalog/view/theme/default/stylesheet/product_option.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" rel="icon" />
+    <script src="..//catalog/view/theme/default/javascript/product_option.js" type="text/javascript"></script>
+    <link href="../catalog/view/theme/vision/stylesheet_custom/stylesheet.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Lịch sử mua hàng</title>
+</head>
+<body>
+    <div class="hidden-md hidden-lg opacity_menu"></div>
+    <div class="opacity_filter"></div>
+    <div id="mySidenav" class="sidenav menu_mobile hidden-md hidden-lg">
+        <div class="top_menu_mobile">
+            <span class="close_menu"><img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="La Vie Est Belle Flower Boutique"></span>
+        </div>
+        <div class="content_memu_mb">
+            <div class="link_list_mobile">
+                <ul class="ct-mobile hidden"></ul>
+                <ul class="ct-mobile">
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/">Trang chủ</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/gioi-thieu">Giới thiệu</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/san-pham">Sản phẩm</a>
+                        <i class="ti-plus hide_close"></i>
+                        <ul class="sub-menu" style="display:none;">
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hoa-bo"><span>- Hoa Bó</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/binh-hoa"><span>- Bình Hoa</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/gio-hoa"><span>- Giỏ Hoa</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hop-hoa"><span>- Hộp Hoa</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/ke-hoa-chuc-mung"><span>- Kệ Hoa Chúc Mừng</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/ke-hoa-chia-buon"><span>- Kệ Hoa Chia Buồn</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hoa-cuoi"><span>- Hoa Cưới</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/hoa-tulip"><span>- Hoa Tulip</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/thong-tuoi-noel"><span>- Thông Tươi Noel</span></a>
+                            </li>
+                            <li class="level1  level-top parent level_ico">
+                                <a href="http://127.0.0.1:5500/lan-ho-diep"><span>- Lan Hồ Điệp</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/chuyen-cua-la">Nghe Hoa Kể</a>
+                    </li>
+                    <li class="level0 level-top parent level_ico">
+                        <a href="http://127.0.0.1:5500/lien-he">Liên hệ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End -->
+    <header class="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <ul class="list-inline topbar_left hidden-sm hidden-xs">
+                            <li>
+                                <a class="welcome_text" href="javascript:void(0)"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-6 d-list col-xs-12 a-right topbar_right">
+                        <div class="list-inline a-center f-right">
+                            <ul>
+                                <li class="topbar_currency"> <span id="form-currency">
+        <a href="javascript:void(0)" class="current_currency">
+                                                                                                                                    VND <strong>đ</strong>
+                                        <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="currencies_list">
+                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="EUR">
+                            Euro €                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="GBP">
+                            £ Pound Sterling                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="USD">
+                            $ US Dollar                        </a>
+                    </li>
+                                                                <li>
+                        <a class="currency-select" href="javascript:void(0)" name="VND">
+                            VND đ                        </a>
+                    </li>
+                                    </ul>
+        <div class="pull-left hidden">
+            <form action="http://127.0.0.1:5500/common/currency/currency" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="code" value="" />
+                <input type="hidden" name="redirect" value="http://127.0.0.1:5500/account/login?redirect=http://127.0.0.1:5500/checkout/cart" />
+            </form>
+        </div>
+    </span>
+                                </li>
+                                <li><a href="http://127.0.0.1:5500/account/login">Đăng nhập</a></li>
+                                <li><a href="http://127.0.0.1:5500/account/register">Đăng ký</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mid-header">
+            <div class="content_header">
+                <div class="header-main">
+                    <div class="container">
+                        <div class="menu-bar-h nav-mobile-button hidden-md hidden-lg">
+                            <a href="#nav-mobile">
+                                <!-- <img src='catalog/view/theme/vision/image/i_menubar.png' alt='menu bar' /> -->
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 text-right">
+                                <div class="logo">
+                                    <a href="http://127.0.0.1:5500/" class="logo-wrapper ">                  
+                                            <img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="La Vie Est Belle Flower Boutique">
+                                        </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9">
+                                <div class="row">
+                                    <div class="col-lg-9 col-md-9">
+                                        <div id="search" class="">
+                                            <span class="fa fa-search"></span>
+                                            <div class="input-group search-bar" role="search" style="background-image: url('image/catalog/services/search_box_bg.png')">
+                                                <div class="collection-selector">
+                                                    <select name="category_id" class="search_text">
+                <option class="item-cate search_item" value="0">Tất cả</option>
+                                                            <option class="item-cate search_item" value="197">Thông Tươi Noel</option>
+                                                                                                    <option class="item-cate search_item" value="182">Hoa Bó</option>
+                                                                                                    <option class="item-cate search_item" value="187">Bình Hoa</option>
+                                                                                                    <option class="item-cate search_item" value="186">Giỏ Hoa</option>
+                                                                                                    <option class="item-cate search_item" value="193">Hoa Cưới</option>
+                                                                                                    <option class="item-cate search_item" value="189">Kệ Hoa</option>
+                                                                                            <option class="item-cate search_item" value="195">&nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chia Buồn</option>
+                                                                                                                        <option class="item-cate search_item" value="196">&nbsp;&nbsp;&nbsp;&nbsp;Kệ Hoa Chúc Mừng</option>
+                                                                                                                                <option class="item-cate search_item" value="194">Lan Hồ Điệp</option>
+                                                                                                    <option class="item-cate search_item" value="192">Hoa Tulip</option>
+                                                                                                    <option class="item-cate search_item" value="191">Hộp Hoa</option>
+                                                                    </select>
+                                                </div>
+                                                <div class="form-search">
+                                                    <input type="search" name="search" value="" placeholder="Tìm kiếm" class="input-group-field st-default-search-input search-text" autocomplete="off">
+                                                    <span class="input-group-btn"><button class="btn icon-fallback-text"><i class="fa fa-search" ></i></button></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="header-right">
+                                            <div class="header-acount hidden-lg-down">
+                                                <div id="cart" class="lazi">
+                                                    <div class="top-cart-contain f-right hidden-xs hidden-sm visible-md visible-lg">
+                                                        <div class="mini-cart text-xs-center">
+                                                            <div class="heading-cart">
+                                                                <a class="bg_cart" href="http://127.0.0.1:5500/checkout/cart" title="Giỏ hàng">
+                                                                    <img alt="Giỏ hàng" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="https://res.cloudinary.com/anlqn/image/upload/v1605159235/ex/iufzxvou6n46tcqz83dd.png" class="lazy" />
+                                                                    <span class="count_item count_item_pr cart-total">0</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="top-cart-content">
+                                                                <ul id="cart-sidebar" class="mini-products-list count_li">
+                                                                    
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="top-cart-contain f-right hidden-lg hidden-md visible-xs visible-sm">
+                                                        <div class="mini-cart text-xs-center">
+                                                            <div class="heading-cart-mobi">
+                                                                <a class="bg_cart" href="http://127.0.0.1:5500/checkout/cart" title="Giỏ hàng">
+                                                                    <img alt="Giỏ hàng" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC" data-src="catalog/view/theme/vision/image/icon_cart_mobi.png" class="lazy" />
+                                                                    <span class="count_item count_item_pr cart-total">0</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <nav class="header-nav hidden-sm hidden-xs">
+                                            <ul class="item_big pt_custommenu" id="pt_custommenu">
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/">
+                                                        <span>Trang chủ</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/gioi-thieu">
+                                                        <span>Giới thiệu</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/san-pham">
+                                                        <span>Sản phẩm</span>
+                                                        <i class="fa fa-caret-down"></i>
+                                                    </a>
+                                                    <ul class="item_small hidden-sm hidden-xs popup" style="display:none;">
+                                                        <div class="block1">
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hoa-bo">
+                                                                    <span>Hoa Bó</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/binh-hoa">
+                                                                    <span>Bình Hoa</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/gio-hoa">
+                                                                    <span>Giỏ Hoa</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hop-hoa">
+                                                                    <span>Hộp Hoa</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/ke-hoa-chuc-mung">
+                                                                    <span>Kệ Hoa Chúc Mừng</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/ke-hoa-chia-buon">
+                                                                    <span>Kệ Hoa Chia Buồn</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hoa-cuoi">
+                                                                    <span>Hoa Cưới</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/hoa-tulip">
+                                                                    <span>Hoa Tulip</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/thong-tuoi-noel">
+                                                                    <span>Thông Tươi Noel</span>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="http://127.0.0.1:5500/lan-ho-diep">
+                                                                    <span>Lan Hồ Điệp</span>
+                                                                </a>
+                                                            </li>
+                                                        </div>
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/chuyen-cua-la">
+                                                        <span>Nghe Hoa Kể</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item pt_menu">
+                                                    <a class="a-img" href="http://127.0.0.1:5500/lien-he">
+                                                        <span>Liên hệ</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        <script type="text/javascript">
+                                            var CUSTOMMENU_POPUP_EFFECT = 0;
+                                            var CUSTOMMENU_POPUP_TOP_OFFSET = 50;
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <style>
+        .main-1 {
+            width: 100%;
+
+        }
+        .c-flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-2 {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #d9d9d9;
+            width: 100%;
+            max-width: 900px;
+        }
+        .choose {
+            display: flex;
+            align-items: center;
+        }
+        .choose-i {
+            padding: 10px 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .choose-1 {
+            border-bottom: 2px solid #2e89ff;
+        }
+    </style>
+    <br>
+    <div class="main-1 c-flex-center">
+        <div class="main-2">
+            <div class="choose">
+                <a href="../history.html">
+                    <div class="choose-2 choose-i c-flex-center">Chờ duyệt</div>
+                </a>
+                <a href="approved.html">
+                    <div class="choose-1 choose-i c-flex-center">Đã duyệt</div>
+                </a>
+            </div>
+            <div id="list-order-pending">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    async function approved() {
+        const res= await axios({
+            url: "http://localhost:8000/user/order/approved",
+            method: 'get',
+            params: {
+                id_user: Cookies.get("uid")
+            }
+        })
+        const result= await res.data
+        if(result?.length > 0) {
+            document.getElementById("list-order-pending").innerHTML= result?.reverse()?.map(item=> `
+                <div>
+                    <div>Họ tên người nhận: <strong id="username">${item.username}</strong></div>
+                    <div>Địa chỉ nhận hàng: <strong id="address">${item.address}</strong></div>
+                    <div>Email: <strong id="email">${item.email}</strong></div>
+                    <div>Số điện thoại người nhận: <strong id="phoneNumber">${item.phone_number}</strong></div>
+                    <div>Ghi chú của người nhận: <strong id="phoneNumber">${item.note}</strong></div>
+                    <div style="color: #000, margin-bottom: 6px">Phương thức thanh toán: <strong>${item?.method_name }</strong></div>    
+
+                    <div>Sản phẩm đã đặt</div>
+                    <div style="display: flex;gap: 20px">
+                        <img style="width: 100px; aspect-ratio: 2 / 3; border-radius: 10px" src="${item.image1}" alt="">
+                        <div>
+                            <div><strong id="product_name">${item.product_name}</strong></div>
+                            <div>Giá: <strong id="price">${numberWithCommas(parseInt(item.price))}đ</strong></div>
+                            <div>Số lượng <strong id="amount">${item.amount}</strong></div>
+                            <div>Thành tiền: <strong id="total">${numberWithCommas(parseInt(item.amount * item.price))}đ</strong></div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            `).join("")
+
+        }
+        else {
+            document.getElementById("list-order-pending").innerHTML= `<div style="text-align: center;margin: 12;width: 100%">Bạn chưa mua sản phẩm nào</div>`
+        }
+    }
+    approved()
+</script>
+<script>
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  </script>
+</html>

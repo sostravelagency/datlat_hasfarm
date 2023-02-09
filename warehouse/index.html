@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.js" integrity="sha512-NXopZjApK1IRgeFWl6aECo0idl7A+EEejb8ur0O3nAVt15njX9Gvvk+ArwgHfbdvJTCCGC5wXmsOUXX+ZZzDQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Kho</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            box-sizing: border-box;
+        }
+        .c-flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%;">
+        <div style="display: flex; align-items: center;">
+            <img style="width: 200px;" src="https://res.cloudinary.com/cockbook/image/upload/v1670871674/single/photo_2022-12-13_02-00-39_ylswk8.jpg" alt="">
+        </div>
+        <div class="c-flex-center" style="justify-content: space-between; width: 100%;">
+            <div style="font-size: 20px; font-weight: 600;">
+                Danh sác các sản phẩm có trong kho
+            </div>
+            <style>
+                .a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 12px;
+                }
+            </style>
+            <div class="a">
+                <div onclick="printReport()" id="export-report" style="padding: 10px 20px; border-radius: 80px; background: #2e89ff; cursor: pointer; color: #fff; width: max-content;" class="c-flex-center">Xuất hóa đơn</div>
+                <div id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <br>
+        <div id="list-product" style="width: 100%">
+            
+        </div>
+    </div>
+    <style>
+        #popup-import, #popup-export {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0,0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 99;
+        }
+        .popup-main {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            
+        }
+    </style>
+    <div id="popup-import" style="display: none;">
+        <div class="popup-main">
+            <input type="hidden" id="import-id-product">
+            <input type="hidden" id="import-amount-product">
+            <input type="hidden" id="import-price-product">
+            <div style="text-align: center; margin-bottom: 12px; font-weight: 600; font-size: 18px;">Nhập sản phẩm</div>
+            <div style="margin-bottom: 8px">Chọn cơ sở nhập</div>
+            <select style="width: 100%; height: 40px;" name="" id="">
+                <option value="1">Cơ sở Datlat Hasfarm 2</option>
+                <option value="2">Cơ sở Datlat Hasfarm 3</option>
+                <option value="3">Cơ sở Datlat Hasfarm 4</option>
+                <option value="4">Cơ sở Datlat Hasfarm 5</option>
+                <option value="5">Cơ sở Datlat Hasfarm 6</option>
+            </select>
+            <br>
+            <div>
+                <div style="margin-bottom: 8px">Nhập số lượng cần nhập</div>
+                <input id="input-import-amount-product" type="text" style="width: 100%; height: 40px; outline-color: #2e89ff;" placeholder="Số lượng">
+            </div>
+            <div id="is_set_import_price">
+                <div style="margin-bottom: 8px">Nhập giá sản phẩm cần nhập</div>
+                <input id="input-import-price-product" type="text" style="width: 100%; height: 40px; outline-color: #2e89ff;" placeholder="Giá">
+            </div>
+            <input type="hidden" id="placeholder-import-price">
+            <br>
+            <div style="width: 100%; gap: 20px" class="c-flex-center">
+                <div onclick="iProductExec()" style="width: 160px; height: 40px; border-radius: 80px; cursor: pointer; color: #fff;background-color: #2e89ff;" class="c-flex-center">
+                    Xác nhận
+                </div>
+                <div onclick="closeImportProduct()" style="width: 160px; height: 40px; border-radius: 80px; cursor: pointer; color: #000;background-color: #555;" class="c-flex-center">
+                    Hủy
+                </div>
+            </div>
+            <!-- <select name="" id="o-l">
+
+            </select> -->
+
+        </div>
+    </div>
+    <div id="popup-export" style="display: none;">
+        <div class="popup-main">
+            <input type="hidden" id="export-id-product">
+            <input type="hidden" id="export-amount-product">
+            <div style="text-align: center; margin-bottom: 12px; font-weight: 600; font-size: 18px;">Xuất sản phẩm</div>
+            <div style="margin-bottom: 8px">Chọn cơ sở xuất</div>
+            <!-- <select name="" id="o-l">
+
+            </select> -->
+            <select style="width: 100%; height: 40px;" name="" id="">
+                <option value="1">Cơ sở Datlat Hasfarm 2</option>
+                <option value="2">Cơ sở Datlat Hasfarm 3</option>
+                <option value="3">Cơ sở Datlat Hasfarm 4</option>
+                <option value="4">Cơ sở Datlat Hasfarm 5</option>
+                <option value="5">Cơ sở Datlat Hasfarm 6</option>
+            </select>
+            <br>
+            <div>
+                <div style="margin-bottom: 8px">Nhập số lượng cần xuất</div>
+                <input id="input-export-amount-product" type="text" style="width: 100%; height: 40px; outline-color: #2e89ff;" placeholder="Số lượng">
+            </div>
+            <br>
+            <div style="width: 100%; gap: 20px" class="c-flex-center">
+                <div onclick="eProductExec()" style="width: 160px; height: 40px; border-radius: 80px; cursor: pointer; color: #fff;background-color: #2e89ff;" class="c-flex-center">
+                    Xác nhận
+                </div>
+                <div onclick="closeExportProduct()" style="width: 160px; height: 40px; border-radius: 80px; cursor: pointer; color: #000;background-color: #555;" class="c-flex-center">
+                    Hủy
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+
+    let arr_product= []
+    async function getProduct() {
+        const res= await axios({
+            url: "http://localhost:8000/list-product",
+            method: "get",
+        })
+        const result= await res.data
+        arr_product=result
+        // document.getElementById("o-l").innerHTML= result.map(item=> `
+        //     <option value=${item.id}>${item.product_name}</option>
+        // `)
+        document.getElementById("list-product").innerHTML= result.map(item=> `
+            <div class="c-flex-center" style="gap: 10px; padding-bottom: 12px; border-bottom: 1px solid #d9d9d9; justify-content: flex-start; align-items: flex-start">
+                <img style="width: 130px; aspect-ratio: 2 / 3; object-fit: cover;border-radius: 10px;" src="${item.image1}" alt="">
+                <div>
+                    <div style="margin-bottom: 12px">
+                        Tên sản phẩm: <strong>${item.product_name}</strong>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        Giá: <strong>${numberWithCommas(parseInt(item?.import_price) || "Chưa nhập ")}đ</strong>
+                    </div>
+                    <div style="margin-bottom: 12px;">
+                        Số lượng sản phẩm còn trong kho: <strong>${item.amount_product || 0}</strong>
+                    </div>
+                    <div class="c-flex-center" style="margin-bottom: 12px;gap: 16px; justify-content: flex-start">
+                        <div onclick="importProduct(${parseInt(item.id)}, ${parseInt(item.amount_product)}, ${parseInt(item?.import_price)})" style="padding: 10px 18px; border-radius: 80px; background-color: #2e89ff; color: #fff; cursor: pointer" class="c-flex-center">Nhập</div>
+                        <div onclick="exportProduct(${parseInt(item.id)}, ${parseInt(item.amount_product)}, ${parseInt(item?.import_price)})" style="padding: 10px 18px; border-radius: 80px; background-color: #2dc275; color: #fff; cursor: pointer" class="c-flex-center">Xuất</div>
+                    </div>
+                </div>
+            </div>
+        `)
+    }
+    getProduct()
+    
+</script>
+<script>
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  </script>
+  <script>
+    async function checkLogin() {
+        const res= await axios({
+            url: "http://localhost:8000/warehouse/check/login",
+            method: "post",
+            data: {
+                id_user: Cookies.get("uid") || ""
+            }
+        })
+        const result= await res.data
+        if(result.login=== false ) {
+            window.location.href= window.location.origin+ "/warehouse/login.html"
+        }
+    }
+    checkLogin()
+  </script>
+<script>
+    function importProduct(id, amount, price) {
+        document.getElementById("placeholder-import-price").value= price
+        if(parseInt(price)>=0 && price != NaN ) {
+            document.getElementById("is_set_import_price").style.opacity= 0
+
+        }
+        else {
+            document.getElementById("is_set_import_price").style.opacity= 1
+        }
+        document.getElementById("popup-import").style.display= "flex"
+        document.getElementById("import-id-product").value= id
+        document.getElementById("import-amount-product").value= parseInt(amount)
+        document.getElementById("import-price-product").value= parseInt(price)
+    }
+    function closeImportProduct() {
+        document.getElementById("popup-import").style.display= "none"
+    }
+    async function iProductExec() {
+        if(parseInt(document.getElementById("input-import-amount-product").value) <0 ) {
+            swal("Thông báo", "Số lượng nhập không hợp lệ, vui lòng nhập lại", "success")
+        }
+        else if(parseInt(oldBudget) < (parseInt(document.getElementById("import-amount-product").value)  || 0)  + parseInt(document.getElementById("input-import-amount-product").value) * parseInt(document.getElementById("import-price-product").value)) {
+            swal("Thông báo", "Số lượng nhập vượt quá ngân sách của shop, vui lòng nhập lại", "success")
+
+        }
+        else {
+            if(parseInt($("#placeholder-import-price").val())>=0 && parseInt($("#placeholder-import-price").val()) != NaN) {
+                const res= await axios({
+                    url: "http://localhost:8000/warehouse/import",
+                    method: "post",
+                    data: {
+                        id_product: document.getElementById("import-id-product").value,
+                        amount: (parseInt(document.getElementById("import-amount-product").value)  || 0)  + parseInt(document.getElementById("input-import-amount-product").value),
+                        import_price: parseFloat($("#placeholder-import-price").val()),
+                        time_created: new Date()
+                    }
+                })
+                const result= await res.data
+                swal("Thông báo", "Nhập sản phẩm thành công", "success")
+                .then(()=> axios.post("http://localhost:8000/spend/budget", {budget: parseInt(oldBudget) - parseInt(document.getElementById("input-import-amount-product").value) * parseInt(document.getElementById("import-price-product").value)}))
+                .then(()=> window.location.reload())
+
+            }
+            else {
+                const res= await axios({
+                    url: "http://localhost:8000/warehouse/import",
+                    method: "post",
+                    data: {
+                        id_product: document.getElementById("import-id-product").value,
+                        amount: (parseInt(document.getElementById("import-amount-product").value)  || 0)  + parseInt(document.getElementById("input-import-amount-product").value),
+                        import_price: parseFloat($("#input-import-price-product").val()),
+                        time_created: new Date()
+                    }
+                })
+                const result= await res.data
+                swal("Thông báo", "Nhập sản phẩm thành công", "success")
+                .then(()=> axios.post("http://localhost:8000/spend/budget", {budget: parseInt(oldBudget) - parseInt(document.getElementById("input-import-amount-product").value) * parseInt(document.getElementById("import-price-product").value)}))
+                .then(()=> window.location.reload())
+
+            }
+        }
+    }
+</script>
+<script>
+    function exportProduct(id, amount) {
+        document.getElementById("popup-export").style.display= "flex"
+        document.getElementById("export-id-product").value= id
+        document.getElementById("export-amount-product").value= parseInt(amount)
+    }
+    function closeExportProduct() {
+        document.getElementById("popup-export").style.display= "none"
+    }
+    async function eProductExec() {
+        if(parseInt(document.getElementById("export-amount-product").value) - parseInt(document.getElementById("input-export-amount-product").value) < 0) {
+            swal("Thông báo", "Đã quá số lượng xuất, vui lòng nhập lại", "success")
+        }
+        else {
+            const res= await axios({
+                url: "http://localhost:8000/warehouse/export",
+                method: "post",
+                data: {
+                    id_product: document.getElementById("export-id-product").value,
+                    amount: parseInt(document.getElementById("export-amount-product").value) - parseInt(document.getElementById("input-export-amount-product").value),
+                    time_created: new Date()
+                }
+            })
+            const result= await res.data
+            swal("Thông báo", "Xuất sản phẩm thành công", "success")
+            .then(()=> window.location.reload())
+
+        }
+    }
+    document.getElementById("logout").onclick= function logout() {
+        Cookies.remove("uid")
+        window.location.reload()
+    }
+</script>
+<script>
+    let oldBudget= 0
+    async function getBudget() {
+        const res= await axios({
+            url: "http://localhost:8000/get/budget",
+            method: "get",
+        })
+        const result= await res.data
+        oldBudget= parseInt(result[0]?.budget)
+    }
+    getBudget()
+</script>
+<script>
+    
+    async function printReport() {
+        total= _.sumBy(arr_product, function(e) {return (parseInt(e.amount_product) || 0)})
+        const addContent1= `<style>
+                        .header-1 {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 10px;
+                
+                        }
+                        .image-1 {
+                            width: 200px;
+                            height: 100px;
+                        }
+                
+                    </style><div class="header-1">
+        <img src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" class="image-1" alt="">
+        <div>
+            <strong>
+                Mẫu số 02-VT
+            </strong>
+            <div style="margin-top: 10px">(Ban hành theo QĐ số 48-2006-BTC)</div>
+        </div>
+    </div>
+    `
+    +
+    `
+    <div style="text-align: center;font-size: 20px; font-weight: 600; margin-top: 12px;">
+        Phiếu kiểm kho
+    </div>
+    `
+    +
+    `
+    <div style="text-align: center; margin-top: 20px;">
+        Ngày ${moment(new Date()).format("DD")} tháng ${moment(new Date()).format("MM")} năm ${moment(new Date()).format("YYYY")} 
+    </div>
+    <div style="margin-top: 12px; margin-bottom: 12px">
+        <div>Họ tên người nhận: DaLlat HasFarm</div>
+        <div>Số điện thoại: 0123456789</div>
+        <div>Địa chỉ: sô 388 âu lạc, phú nhuận, hcm</div>
+    </div>`
+        const addContent2= `<div style="margin-top: 12px;">Tổng số lượng tồn : ${total}</div>
+    <div style="width: 100%; display: flex; flex-direction: row-reverse;">
+        <div>
+            <div style="text-align: center; margin-bottom: 8px;">Ngày ${moment(new Date()).format("DD")} tháng  ${moment(new Date()).format("MM")} năm  ${moment(new Date()).format("YYYY")}</div>
+            <div style="text-transform: uppercase; text-align: center; margin-bottom: 8px;">Nhân viên kho</div>
+            <div style="text-align: center">DaLat HasFarm</div>
+        </div>
+    </div>`
+    const addContent3= `<style>
+            * {
+                color: #000 !important;
+            }
+            .tr-a {
+                            font-weight: 600;
+                            font-size: 18px;
+                
+                        }
+                        .tr-a td {
+                            text-align: center;
+                            padding: 10px;
+                        }
+                        table {
+                            width: 100%;
+                        }
+                        thead, tbody {
+                            width: 100%;
+                        }
+                        .item-list-r td {
+                            padding: 10px;
+                        }
+                        * {
+                            border-collapse: collapse;
+                        }
+                        td {
+                            border: 1px solid #000;
+                            border-collapse: collapse;
+                        }
+        </style>`
+        
+        const addContent4= `<table>
+                        <thead>
+                            <tr class="tr-a">
+                                <td style="text-align: left;">STT</td>
+                                <td style="text-align: left;">Tên mặt hàng</td>
+                                <td style="text-align: left;">Số lượng tồn</td>
+                                <td style="text-align: left;">Đơn giá</td>
+                                <!-- <td style="text-align: left;">Thành tiền</td> -->
+                                
+                            </tr>
+                        Giá</thead>
+                        <tbody id="list-product">
+                        `+
+                        arr_product?.map((item, key)=> `
+                        <tr class="item-list-r">
+                            <td>${parseInt(key) + parseInt(1)}</td> 
+                            <td>${item.product_name}</td>    
+                            <td>${item.amount_product || 0}</td>    
+                            <td>${numberWithCommas(parseInt((item?.import_price)))}đ</td>   
+                            <!-- <td>${numberWithCommas(parseInt(item?.import_price) || "Chưa nhập" * (parseInt(item.amount_product) || 0))}đ</td>     --> 
+                            
+                        </tr>
+                        `).join("")
+                        +
+                        ` 
+                        </tbody>
+                    </table>`
+        const printContent=addContent3+ addContent1+ addContent4 + addContent2
+        const originContent= document.body.innerHTML
+        document.body.innerHTML= printContent
+        await wait(500)
+        window.print()
+        document.body.innerHTML= originContent
+        window.location.reload()
+    }
+</script>
+<script>
+    function waitForImageToLoad(imageElement){
+        return new Promise(resolve=>{imageElement.onload = resolve})
+    }
+    function wait(ms) {
+        return new Promise(resolve=> setTimeout(resolve, ms))
+    }
+</script>
+
+</html>

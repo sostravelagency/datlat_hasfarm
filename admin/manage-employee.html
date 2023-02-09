@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Admin</title>
+    <style>
+        html {
+            background-color: #1d1e22;
+        }
+        * {
+            color: #ffffff80;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .item-navigation-active {
+            background: #323a46;
+        }
+        .admin-profile {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            gap: 16px;
+        }
+        #logout {
+            cursor: pointer;
+        }
+        .list-user {
+            width: 100%;
+        }
+        td {
+            padding: 10px;
+        }
+        .action {
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            gap: 20px;
+        }
+        .edit-employee {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #2e89ff;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .delete-employee {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f00;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <style>
+        .popup-detail-order {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: #000
+        }
+        .wrap-popup-edit-product {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #e7e7e7;
+            padding: 10px;
+        }
+        .title-popup-edit-product {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+            text-align: center;
+            margin: 12px 0;
+        }
+        .item-popup-edit-product {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .das-sar-a-sae {
+            height: 40px;
+            border: none;
+            width: 350px;
+            outline-color: #2e89ff;
+            padding: 10px;
+            background-color: #d9d9d9;
+            color: #000;
+            font-weight: 600;
+
+        }
+        .t-ewa--a-sass {
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #000;
+        }
+        .ds-eas-fad--as {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .dsds-as-da-s-fda {
+            width: 160px;
+            height: 40px;
+            color: #fff;
+            background-color: #2e89ff;
+            border-radius: 80px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .fdaf-sd--daedfa {
+            background-color: #555;
+        }
+        .sdd-s-s-asasas {
+            width: 100%;
+
+        }
+        .sfskldjasasas {
+            width: 100%;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 20px;
+            color: #000;
+        }
+        .fsdjhdjsalsasfs {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+        .item-popup-edit-product {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .das-sar-a-sae {
+                height: 40px;
+                border: none;
+                width: 350px;
+                outline-color: #2e89ff;
+                padding: 10px;
+                background-color: #d9d9d9;
+                color: #000;
+                font-weight: 600;
+
+            }
+            .t-ewa--a-sass {
+                width: 150px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #000;
+            }
+            .ds-eas-fad--as {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+            }
+            .dsds-as-da-s-fda {
+                width: 160px;
+                height: 40px;
+                color: #fff;
+                background-color: #2e89ff;
+                border-radius: 80px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .fdaf-sd--daedfa {
+                background-color: #555;
+            }
+    </style>
+    <style>
+    .popup-edit-product, .popup-add-product {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        background-color: rgba(255, 255, 255, 0.3);
+        color: #000
+    }
+    .wrap-popup-edit-product {
+        width: 100%;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 5px;
+        border: 1px solid #e7e7e7;
+        padding: 10px;
+    }
+    .title-popup-edit-product {
+        font-size: 24px;
+        font-weight: 600;
+        color: #000;
+        text-align: center;
+        margin: 12px 0;
+    }
+    .item-popup-edit-product {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+    .das-sar-a-sae {
+        height: 40px;
+        border: none;
+        width: 350px;
+        outline-color: #2e89ff;
+        padding: 10px;
+        background-color: #d9d9d9;
+        color: #000;
+        font-weight: 600;
+
+    }
+    .t-ewa--a-sass {
+        width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #000;
+    }
+    .ds-eas-fad--as {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+    .dsds-as-da-s-fda {
+        width: 160px;
+        height: 40px;
+        color: #fff;
+        background-color: #2e89ff;
+        border-radius: 80px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .fdaf-sd--daedfa {
+        background-color: #555;
+    }
+</style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <div class="admin-logo">
+                <a href="http://127.0.0.1:5500">
+                    <img class="admin-img-logo" src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="">
+                </a>
+            </div>
+            <div class="admin-search" style="opacity: 0;">
+                <input placeholder="Tìm kiếm" class="empoyee-search-input" type="text">
+            </div>
+            <div class="admin-profile">
+                <div id="username">Admin</div>
+                <div onclick="logout()" id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <div class="main-admin">
+            <div class="main-navigation">
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/dashboard.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/1828/1828762.png" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/order.html">
+                        <img class="item-navigation-img" src="https://toppng.com/uploads/preview/menu-bar-order-my-order-icon-11563381244rqqi52g1re.png" alt="">
+                        <span>Đơn hàng</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/product.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+                        <span>Sản phẩm</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/stats.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/116/116385.png" alt="">
+                        <span>Thống kê</span>
+                    </a>
+                </div>
+                <div id="dashboard-nav" class="item-navigation item-navigation-active">
+                    <a href="http://127.0.0.1:5500/admin/manage-employee.html">
+                        <img class="item-navigation-img" src="https://res.cloudinary.com/cockbook/image/upload/v1672475575/single/img_184513_cokdap.png" alt="">
+                        <span>Quản lý</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/warehouse.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/151/151901.png" alt="">
+                        <span>Kho</span>
+                    </a>
+                </div>
+            </div>
+            <div class="main-empliyee-content">
+                <div onclick="openPopupAdd()" id="btn-add-product" class="sjd-fd-das--fgasd" style="margin: 12px 0; display: flex; align-items: center; gap: 16px; cursor: pointer; width: max-content; padding: 12px; border-radius: 10px;">
+                    <img style="width: 24px; height: 24px; filter: invert(100%) sepia(0%) saturate(7421%) hue-rotate(337deg) brightness(88%) contrast(94%);" src="https://cdn-icons-png.flaticon.com/512/992/992651.png" alt="">
+                    <span>Thêm nhân viên</span>
+                </div>
+                <table class="list-user">
+                    <tr>
+                        <td>Mã nhân viên</td>
+                        <td>Tên nhân viên</td>
+                        <td>Tài khoản</td>
+                        <td>Mật khẩu</td>
+                        <td>Action</td>
+                    </tr>
+                    <tbody id="list-user-main">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="popup-detail" class="popup-detail-order" style="display: none;">
+        <div class="wrap-popup-edit-product">
+            <div class="title-popup-edit-product">
+               Sửa thông tin nhân viên
+            </div>
+           
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Tên nhân viên: </div>
+                <input id="inp-employee-name" type="text" class="das-sar-a-sae">
+            </div>
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Tài khoản: </div>
+                <input id="inp-employee-account" type="text" class="das-sar-a-sae">
+            </div>
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Mật khẩu: </div>
+                <input id="inp-employee-password" type="text" class="das-sar-a-sae">
+            </div>
+            <style>
+                .rx {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-bottom: 12px;
+                }
+                .rx * {
+                    color: #000 !important;
+                }
+            </style>
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Phân quyền: </div>
+                <div>
+                    <div class="rx">
+                        <input id="role-1" type="checkbox" > <span>Đơn hàng</span>
+                    </div>
+                    <div class="rx">
+                        <input id="role-2" type="checkbox" > <span>Sản phẩm</span>
+                    </div>
+                    <div class="rx">
+                        <input id="role-3" type="checkbox" > <span>Thống kê</span>
+                    </div>
+                </div>
+            </div>
+            <input id="inp-employee-id" type="hidden">
+            <div id="msg" style="margin-bottom: 12px;color: #2dc275;"></div>
+            <div class="ds-eas-fad--as">
+                <div onclick="updateEmployee()" class="dsds-as-da-s-fda">Cập nhật</div>
+                <div id="cancel-update" class="dsds-as-da-s-fda fdaf-sd--daedfa">Đóng</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <!--  -->
+    <div id="popup-add" class="popup-add-product" style="display: none;">
+        <div class="wrap-popup-edit-product">
+            <div class="title-popup-edit-product">
+                Thêm nhân viên
+            </div>
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Tên nhân viên: </div>
+                <input id="inp-add-employee-name" type="text" class="das-sar-a-sae">
+            </div>
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Tài khoản: </div>
+                <input id="inp-add-employee-account" type="text" class="das-sar-a-sae">
+            </div>
+            <div class="item-popup-edit-product">
+                <div class="t-ewa--a-sass">Mật khẩu: </div>
+                <input id="inp-add-employee-password" type="text" class="das-sar-a-sae">
+            </div>
+            <!--  -->
+            <div style="color: #2dc275" id="msg"></div>
+            <div class="ds-eas-fad--as">
+                <div onclick="addEmployee()" class="dsds-as-da-s-fda">Thêm</div>
+                <div id="cancel-add" class="dsds-as-da-s-fda fdaf-sd--daedfa">Hủy</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<script>
+    async function checkInfo() {
+
+        if(Cookies.get("uid")) {
+            const res= await axios({
+                url: "http://localhost:8000/admin",
+                method: "get",
+                params: {
+                    id: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.[0]?.id) {
+                $("#username").html(result?.[0]?.adminName)
+            }
+            else {
+                window.location.href= window.location.origin+ "/admin/login.html"
+            }
+        
+        }
+        else {
+            window.location.href= window.location.origin+ "/admin/login.html"
+        }
+    }
+    checkInfo()
+</script>
+<script>
+    const logout= ()=> {
+        Cookies.remove("uid")
+        return window.location.href= window.location.origin+ "/employee/login.html"
+    };
+</script>
+<script>
+    async function getEmployee() {
+        const res= await axios({
+            url: "http://localhost:8000/admin/get/employee",
+            method: "get"
+        })
+        const result= await res.data
+        document.getElementById("list-user-main").innerHTML= result?.map(item=> `
+            <tr>
+                <td>NV${item.id}</td>
+                <td>${item.employeeName}</td>
+                <td>${item.account}</td>
+                <td>${item.password}</td>
+                <td>
+                    <div class="action">
+                        <div onclick="detailEmployee(${item.id})" id="edit-employee" class="edit-employee">Sửa </div>
+                        <div onclick="deleteUser(${item.id})" class="delete-employee">Xóa</div>
+                    </div>
+                </td>
+            </tr>
+        `).join("")
+    }
+    getEmployee()
+</script>   
+<script>
+    $("#role-1").on("click", function() {
+        if($(this).is(":checked")) {
+            $(this).val(1)
+        }
+        else {
+            $(this).val(0)
+        }
+    })
+    $("#role-2").on("click", function() {
+        if($(this).is(":checked")) {
+            $(this).val(1)
+        }
+        else {
+            $(this).val(0)
+        }
+    })
+    $("#role-3").on("click", function() {
+        if($(this).is(":checked")) {
+            $(this).val(1)
+        }
+        else {
+            $(this).val(0)
+        }
+    })
+    async function detailEmployee(id) {
+        document.getElementById("popup-detail").style.display= "flex"     
+        const res= await axios({
+            url: "http://localhost:8000/admin/detail-employee",
+            method: "get",
+            params: {
+                id: id
+            }
+        }) 
+        const result= await res.data
+        document.getElementById("inp-employee-name").value= result[0].employeeName
+        document.getElementById("inp-employee-account").value= result[0].account
+        document.getElementById("inp-employee-password").value= result[0].password
+        if(result[0]?.order_role== 1) {
+            document.getElementById("role-1").checked= true
+            document.getElementById("role-1").value= 1
+        }
+        else {
+            document.getElementById("role-1").checked= false
+            document.getElementById("role-1").value= 0
+
+        }
+        if(result[0]?.order_role== 1) {
+            document.getElementById("role-2").checked= true
+            document.getElementById("role-2").value= 1
+
+        }
+        else {
+            document.getElementById("role-2").checked= false
+            document.getElementById("role-2").value= 0
+
+
+        }
+        if(result[0]?.order_role== 1) {
+            document.getElementById("role-3").checked= true
+            document.getElementById("role-3").value= 1
+
+        }
+        else {
+            document.getElementById("role-3").checked= false
+            document.getElementById("role-3").value= 0
+
+
+        }
+        document.getElementById("inp-employee-id").value= id
+        return console.log(result)
+    }
+    document.getElementById("cancel-update").onclick= function() {
+        document.getElementById("popup-detail").style.display= "none"      
+        
+    }
+</script>
+<script>
+    async function updateEmployee() {
+        const res= await axios({
+            url: "http://localhost:8000/admin/update/employee",
+            method: "put",
+            data: {
+                employeeName: $("#inp-employee-name").val(),
+                account: $("#inp-employee-account").val(),
+                password: $("#inp-employee-password").val(),
+                id: $("#inp-employee-id").val(),
+                order_role: $("#role-1").val(),
+                product_role: $("#role-2").val(),
+                stats_role: $("#role-3").val()
+            }
+        })
+        const result= await res.data
+        document.getElementById("msg").innerHTML = result.msg
+        setTimeout(()=> {
+            document.getElementById("popup-detail").style.display= "none"
+            return window.location.reload()
+        }, 1500)
+    }
+</script>
+<script>
+    async function deleteUser(id) {
+        swal("Thông báo", "Bạn có muốn xóa nhân viên này không ?", {
+        buttons: {
+          cancel: "Hủy",
+          ok: "Xóa"
+        },
+      })
+      .then(async (value) => {
+        switch (value) {
+          case "cancel":
+            break
+          case "ok":
+            const res= await axios({
+                url: "http://localhost:8000/admin/delete/employee",
+                method: "delete",
+                data: {
+                    id: id
+                }
+            })
+            const result= await res.data
+            swal("Thông báo", "Xóa nhân viên thành công", "success")
+            .then(()=> window.location.reload())
+            break;
+          
+          default:
+            break
+        }
+      });
+    }
+</script>
+<script>
+    async function openPopupAdd() {
+        document.getElementById("popup-add").style.display= "flex"
+    }
+    $("#cancel-add").on("click", function() {
+        $("#popup-add").css("display", "none")
+    })
+    async function addEmployee() {
+        if($("#inp-add-employee-name").val().length <= 0 || $("#inp-add-employee-account").val().length <= 0 || $("#inp-add-employee-password").val().length <= 0) {
+            swal("Thông báo", "Thông tin người dùng không hợp lệ, vui lòng thử lại", "success")
+        }
+        else {
+
+            const res= await axios({
+                url: "http://localhost:8000/add/employee",
+                method: "post",
+                data: {
+                    employeeName: $("#inp-add-employee-name").val(),
+                    employeeAccount: $("#inp-add-employee-account").val(),
+                    employeePassword: $("#inp-add-employee-password").val(),
+                    
+                }
+            })
+            const result= await res.data
+            document.getElementById("msg").innerHTML= result.msg
+            setTimeout(()=> {
+                document.getElementById("popup-add").style.display= "none"
+                window.location.reload()
+            }, 1500)
+            console.log(result)
+        }
+    }
+</script>
+</html>

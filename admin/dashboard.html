@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js" integrity="sha512-wT7uPE7tOP6w4o28u1DN775jYjHQApdBnib5Pho4RB0Pgd9y7eSkAV1BTqQydupYDB9GBhTcQQzyNMPMV3cAew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Admin</title>
+    <style>
+        html {
+            background-color: #1d1e22;
+        }
+        * {
+            color: #ffffff80;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+        }
+        .item-navigation-active {
+            background: #323a46;
+        }
+        .admin-profile {
+            display: flex;
+            justify-self: center;
+            align-items: center;
+            gap: 16px;
+        }
+        #logout {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <div class="admin-logo">
+                <a href="http://127.0.0.1:5500">
+                    <img class="admin-img-logo" src="https://res.cloudinary.com/cockbook/image/upload/v1671249181/single/photo_2022-12-13_02-00-39_ylswk8-removebg-preview_pc6nqv.png" alt="">
+                </a>
+            </div>
+            <div class="admin-search" style="opacity: 0;">
+                <input placeholder="Tìm kiếm" class="empoyee-search-input" type="text">
+            </div>
+            <div class="admin-profile">
+                <div id="username">Admin</div>
+                <div onclick="logout()" id="logout">Đăng xuất</div>
+            </div>
+        </div>
+        <div class="main-admin">
+            <div class="main-navigation">
+                <div class="item-navigation item-navigation-active">
+                    <a href="http://127.0.0.1:5500/admin/dashboard.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/1828/1828762.png" alt="">
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/order.html">
+                        <img class="item-navigation-img" src="https://toppng.com/uploads/preview/menu-bar-order-my-order-icon-11563381244rqqi52g1re.png" alt="">
+                        <span>Đơn hàng</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/product.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="">
+                        <span>Sản phẩm</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/stats.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/116/116385.png" alt="">
+                        <span>Thống kê</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/manage-employee.html">
+                        <img class="item-navigation-img" src="https://res.cloudinary.com/cockbook/image/upload/v1672475575/single/img_184513_cokdap.png" alt="">
+                        <span>Quản lý</span>
+                    </a>
+                </div>
+                <div class="item-navigation">
+                    <a href="http://127.0.0.1:5500/admin/warehouse.html">
+                        <img class="item-navigation-img" src="https://cdn-icons-png.flaticon.com/512/151/151901.png" alt="">
+                        <span>Kho</span>
+                    </a>
+                </div>
+            </div>
+            <style>
+                #add-budget {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 80px;
+                    background-color: #2e89ff;
+                    color: #fff;
+                    cursor: pointer;
+                    padding: 10px;
+                    font-weight: 600;
+                }
+                .xz-s {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                }
+                .swal-content__input {
+                    color: #000 !important;
+                }
+            </style>
+            <div class="main-empliyee-content">
+                <div class="xz-s" style="margin-bottom: 18px">Ngân sách của shop: <strong id="budget-shop"></strong><span id="add-budget">Thêm ngân sách</span></div>
+                <div class="brief-stats">
+                    <div class="count-all-products count-1">
+                        <div class="item-count-x">Tất cả sản phẩm</div>
+                        <div id="count-product" class="item-main-x">0</div>
+                    </div>
+                    <div class="count-all-products count-2">
+                        <div class="item-count-x">Người dùng</div>
+                        <div id="count-user" class="item-main-x">0</div>
+                    </div>
+                    <div class="count-all-products count-3">
+                        <div class="item-count-x">Tổng doanh thu</div>
+                        <div id="count-budget" class="item-main-x">0đ</div>
+                    </div>
+                    <div class="count-all-products count-4">
+                        <div class="item-count-x">Đơn đặt hàng</div>
+                        <div id="count-order" class="item-main-x">0</div>
+                    </div>
+                    <div class="count-all-products count-4">
+                        <div class="item-count-x">Tổng ngân sách</div>
+                        <div id="total-budget" class="item-main-x">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    async function getDashboard() {
+        const res= await axios({
+            url: "http://localhost:8000/employee/dashboard",
+            method: "get"
+        })
+        const result= await res.data
+        document.getElementById("count-product").innerHTML= result.countProduct
+        document.getElementById("count-user").innerHTML= result.countUser
+        document.getElementById("count-order").innerHTML= result.countOrder
+        document.getElementById("count-budget").innerHTML= numberWithCommas(_.sumBy(result.budget, function(e) {return parseInt(e.amount) * parseInt(e.price) })) + "đ"
+        document.getElementById("total-budget").innerHTML= numberWithCommas(_.sumBy(result.revenue, function(e) {return parseInt(e.price) * parseInt(e.amount_product)}))+ "đ"
+    
+    }
+    getDashboard()
+</script>
+<script>
+    function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+</script>
+<script>
+    async function checkInfo() {
+        
+        if(Cookies.get("uid")) {
+            try {
+                const res= await axios({
+                url: "http://localhost:8000/admin",
+                method: "get",
+                params: {
+                    id: Cookies.get("uid")
+                }
+            })
+            const result= await res.data
+            if(result?.[0]?.id) {
+                $("#username").html(result?.[0]?.adminName)
+            }
+            else {
+                window.location.href= window.location.origin+ "/admin/login.html"
+            }
+        
+        } catch (error) {
+            window.location.href= window.location.origin+ "/admin/login.html"
+        }
+            
+        }
+        else {
+            window.location.href= window.location.origin+ "/admin/login.html"
+        }
+    }
+    checkInfo()
+</script>
+<script>
+    const logout= ()=> {
+        Cookies.remove("uid")
+        return window.location.href= window.location.origin+ "/employee/login.html"
+    };
+</script>
+<script>
+    let oldBudget= 0
+    async function getBudget() {
+        const res= await axios({
+            url: "http://localhost:8000/get/budget",
+            method: "get",
+        })
+        const result= await res.data
+        document.getElementById("budget-shop").innerHTML= numberWithCommas(parseInt(result[0]?.budget) || 0) + "đ"
+        document.getElementById("total-budget").innerHTML= numberWithCommas(parseInt(result[0]?.budget)) + "đ"
+        oldBudget= parseInt(result[0]?.budget) || 0
+    }
+    getBudget()
+</script>
+<script>
+    $("#add-budget").on("click", function() {
+        swal({
+            text: 'Thêm ngân sách cho cửa hàng',
+            content: "input",
+            button: {
+                text: "Thêm",
+                closeModal: false,
+            },
+        })
+        .then(name => {
+            if (!name) throw null;
+            if(name.length <=0 ) throw null;
+            return axios.post("http://localhost:8000/add/budget", {budget: parseInt(name) + parseInt(oldBudget)});
+        })
+        .then(results => {
+            return results;
+        })
+        .then(json => {
+            swal(
+               "Thông báo", 
+               "Đã thêm ngân sách thành công",
+               "success"
+            )
+            .then(()=> window.location.reload())
+        })
+    })
+</script>
+</html>
